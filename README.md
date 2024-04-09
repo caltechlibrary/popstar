@@ -1,10 +1,14 @@
 # Grubbs Archive Project
 
-Shortcuts can be exported and saved as files. For preservation and history, saved copies of the workflow are kept in a GitHub repository. A more direct way of sharing Shortcuts is via an iCloud sharing mechanism provided by Apple for the purpose of distributing Shortcuts.
+Shortcuts can be exported and saved as files. These shortcuts can be imported into the Shortcuts app on MacOS using the menu item _File_ ▹ _Import_.
 
-Links to latest copies of the Shortcuts:
+Installing the shortcuts directly on an iPhone is more difficult because there is no equivalent import command in the iOS version of Shortcuts. Instead, it is easier to use the iCloud sharing mechanism provided by Apple for the purpose of distributing Shortcuts.
 
-A work in progress ...
+
+## License
+
+Software produced by the Caltech Library is Copyright © 2024 California Institute of Technology. This software is freely distributed under a modified BSD 3-clause license. Please see the [LICENSE](LICENSE) file for more information.
+
 
 ## Acknowledgments
 
