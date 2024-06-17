@@ -1,5 +1,5 @@
-# Change log for Grubbs
+# Change log for Popstar
 
-## Version 0.0.0
+## 2024-03-21
 
 Created repository.

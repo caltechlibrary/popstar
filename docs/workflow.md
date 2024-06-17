@@ -1,6 +1,6 @@
 # The overall setup and workflow
 
-One of the essential tasks for staff at the Caltech Library Archives is to select and scan paper materials that are in bankers boxes, and put them into archival boxes. A typical collection can consist of tens of thousands of pages of documents. The huge number of pages to be handled means that we need an efficient, simple, and fast workflow. Soca (_Smartphone-Oriented Collection Processing_) is an experiment in creating such a workflow using commodity devices and software services.
+One of the essential tasks for staff at the Caltech Library Archives is to select and scan paper materials that are in bankers boxes, and put them into archival boxes. A typical collection can consist of tens of thousands of pages of documents. The huge number of pages to be handled means that we need an efficient, simple, and fast workflow. Popstar (PhOne-based Processing SofTware for ARchives) is an experiment in creating such a workflow using commodity devices and software services.
 
 ## Example archiving project
 
@@ -26,7 +26,7 @@ Inside the archival boxes, paper documents are organized using manilla folders.
 </figure>
 
 
-## Example workflow using Soca
+## Example workflow using Popstar
 
 Our experiment in simple, rapid scanning used a height-adjustable table (for the comfort of staff doing the work) and a large ring light positioned above the table. The ring light has a phone mount in the middle where we place an Apple iPhone with the camera facing the table surface.
 
@@ -49,4 +49,4 @@ The scanning workflow has a modular design. The overall workflow is divided into
 3. Take photos of documents to file into the current destination folder
 4. Go to step 1
 
-Steps 1–3 are each implemented as their own separate [_Shortcut_](https://support.apple.com/guide/shortcuts/welcome/ios) as described in the [Software](software.md) section. The first two steps above use the camera on the phone to take a picture of box or folder labels rather than document pages; the software uses optical character recognition (OCR) to transcribe any text it finds in the image, and then uses the extracted text to create a folder hierarchy for the destination box and folder within the box. The third step currently does not apply OCR to document pages, because we decided it would be better to leave that to a post-processing workflow.
+Steps 1–3 are each implemented as their own separate [_Shortcut_](https://support.apple.com/guide/shortcuts/welcome/ios) as described in the [Software](software.md) section. The first two steps above use the camera on the phone to take a picture of box or folder labels rather than document pages; the software uses optical character recognition (OCR) to transcribe any text it finds in the image and then uses the extracted text to create a folder hierarchy for the destination box and folder within the box. The third step currently does not apply OCR to document pages, because we decided it would be better to leave that to a post-processing workflow.

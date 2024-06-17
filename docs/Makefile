@@ -2,7 +2,7 @@
 # @brief   Makefile for building docs using Sphinx and MyST
 # @created 2021-01-25
 # @license Please see the file named LICENSE in the project directory
-# @website https://github.com/caltechlibrary/grubbs
+# @website https://github.com/caltechlibrary/popstar
 
 # Before we go any further, test if certain programs are available.
 # The following is based on the approach posted by Jonathan Ben-Avraham to

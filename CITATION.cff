@@ -4,22 +4,16 @@ authors:
   - family-names: Hucka
     given-names: Michael
     orcid: https://orcid.org/0000-0001-9105-5960
-  - family-names: Doiel
-    given-names: Robert
-    orcid: https://orcid.org/0000-0003-0900-6903
-  - family-names: Morrell
-    given-names: Thomas E.
-    orcid: https://orcid.org/0000-0001-9266-5146
   - family-names: Keswick
     given-names: Tommy
     orcid: https://orcid.org/0000-0001-5644-440X
-title: Grubbs
-abstract: Files related to the Grubbs Archives project
+title: Popstar
+abstract: PhOne-based Processing SofTware for ARchives
 version: 0.0.0
 date-released: 2024-03-26
-url: https://github.com/caltechlibrary/grubbs
-repository-code: https://github.com/caltechlibrary/grubbs
-license-url: https://github.com/caltechlibrary/grubbs/blob/main/LICENSE
+url: https://github.com/caltechlibrary/popstar
+repository-code: https://github.com/caltechlibrary/popstar
+license-url: https://github.com/caltechlibrary/popstar/blob/main/LICENSE
 type: software
 keywords:
   - Apple Shortcuts

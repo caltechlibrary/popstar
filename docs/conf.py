@@ -3,13 +3,13 @@
 # @brief   COnfiguration file for Sphynx + MyST based documentation
 # @created 2023-02-28
 # @license Please see the file named LICENSE in the project directory
-# @website https://github.com/caltechlibrary/grubbs
+# @website https://github.com/caltechlibrary/popstar
 #
 # This file only contains a selection of the most common options. For a full
 # list, refer to https://www.sphinx-doc.org/en/master/usage/configuration.html
 # =============================================================================
 
-project = 'Grubbs'
+project = 'Popstar'
 copyright = '2024, Caltech Library'
 author = 'Caltech Library'
 
@@ -36,7 +36,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'README.md',
 
 # -- Sphinx options for HTML output -------------------------------------------
 
-html_title = 'GRUBBS'
+html_title = 'Popstar'
 html_short_title = "Home"
 
 html_logo = "_static/media/cloud-upload.png"
@@ -68,15 +68,15 @@ html_last_updated_fmt = ""
 # Material theme options (see theme.conf for more information)
 html_theme_options = {
 
-    # Set the name of the project to appear in the navgrubbstion.
-    'nav_title': 'Grubbs',
+    # Set the name of the project to appear in the nav bar.
+    'nav_title': 'Popstar',
 
     # Set you GA account ID to enable tracking
     'google_analytics_account': '',
 
     # Specify a base_url used to generate sitemap.xml. If not
     # specified, then no sitemap will be built.
-    'base_url': 'https://caltechlibrary.github.io/grubbs',
+    'base_url': 'https://caltechlibrary.github.io/popstar',
 
     # Set the colors. I found a list here:
     # https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/
@@ -85,8 +85,8 @@ html_theme_options = {
     'color_accent': 'teal',
 
     # Set the repo location to get a badge with stats
-    'repo_url': 'https://github.com/caltechlibrary/grubbs/',
-    'repo_name': 'grubbs',
+    'repo_url': 'https://github.com/caltechlibrary/popstar/',
+    'repo_name': 'popstar',
 
     # Visible levels of the global TOC; -1 means unlimited
     'globaltoc_depth': 2,
