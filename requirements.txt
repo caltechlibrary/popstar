@@ -1,0 +1,13 @@
+# Summary: Python dependencies for Popstar.
+#
+# Currently, Python is only used for building the documentation in ./docs/.
+#
+# Copyright 2024 California Institute of Technology.
+# License: Modified BSD 3-clause – see file "LICENSE" in the project website.
+# Website: https://github.com/caltechlibrary/popstar
+
+linkify-it-py
+myst-parser
+sphinx-autobuild
+sphinx-material
+sphinxcontrib-mermaid
