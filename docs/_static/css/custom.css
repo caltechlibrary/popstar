@@ -84,11 +84,12 @@ figure img.border {
 }
 
 figure img.shadow {
-  filter: drop-shadow(10px 10px 10px #dddddd);
+  filter: drop-shadow(0.25em 0.35em 0.4em #888);
   margin-bottom: 1em;
 }
 
 figure figcaption {
+  margin-top: 0.5em;
   font-style: italic;
 }
 
