@@ -1,0 +1,216 @@
+#!/usr/bin/env osascript -s o                            # -*- mode: apples -*-
+# Summary: get the iCloud link for a Shortcut.
+#
+# Copyright 2024 California Institute of Technology.
+# License: Modified BSD 3-clause – see file "LICENSE" in the project website.
+# Website: https://github.com/caltechlibrary/popstar
+
+use AppleScript version "2.5"
+use framework "Foundation"
+use scripting additions
+
+# ~~~~ Global constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Get a reference to the application (needed for use with Foundation classes).
+property current_app: a reference to current application
+
+# Max time (in sec) to wait for the Shortcuts app to launch.
+property max_app_startup_wait: 15
+
+# Delay (in sec) introduced between steps when picking/clicking on menu items.
+property gui_delay: 0.25
+
+# Max time (in sec) to wait for Shortcuts to write a link to the clipboard.
+property max_clipboard_wait: 5
+
+
+# ~~~~ Helping hands ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Return the given file name without its file name extension, if any.
+on without_ext(file_name)
+	set u to current_app's NSURL's fileURLWithPath:file_name
+	return u's URLByDeletingPathExtension()'s lastPathComponent() as text
+end without_ext
+
+# Return the file name of this script as a string, minus the extension.
+on script_name()
+    tell application "System Events"
+        set path_alias to path to me
+		set file_name to name of path_alias
+		return my without_ext(file_name)
+    end tell
+end script_name
+
+# Return true if the str is one of the values in the list_of_strings.
+on member(str, list_of_strings)
+	ignoring case
+		set nsArray to current_app's |NSArray|'s arrayWithArray:list_of_strings
+		return (nsArray's containsObject:str) as boolean
+	end ignoring
+end member
+
+# Quit and restart application, wait to see it launched, and bring it to the
+# front. Only waits for a limited time, in case something is wrong.
+on restart_app(app_name)
+	tell application app_name
+		quit saving yes
+	end tell
+	set times_left to max_app_startup_wait * 2     # Done in 0.5 sec steps.
+	# This roundabout approach of testing process names is because the more
+	# direct "repeat until application app_name is running" causes errors.
+	repeat while times_left > 0
+		launch application app_name
+		delay 0.5
+		tell application "System Events"
+			if (count of (every process whose name is app_name)) > 0 then
+				exit repeat
+			end if
+		end tell
+		set times_left to (times_left - 1)
+	end repeat
+	if times_left ≤ 0 then
+		my fail("Timed out waiting for " & app_name & " to launch.")
+	end if
+end launch_app
+
+# Return a list of known Shortcut names.
+on known_shortcuts()
+	local orig_delims, shell_output, shortcuts_list
+	set orig_delims to AppleScript's text item delimiters
+	set AppleScript's text item delimiters to (ASCII character 13)
+	try
+		# It is incredible that the MacOS Shortcuts app does not have a way to
+		# get this info via AppleScript, and you have to resort to this.
+		set shell_output to do shell script "shortcuts list"
+	on error msg number code
+		if the code is not -128 then
+			my fail("Unable to get a list of known shortcuts: " ¬
+				& msg & " (error code " & code & ")")
+			return
+		end if
+	end try
+	set shortcuts_list to text items of shell_output
+	set AppleScript's text item delimiters to orig_delims
+	return shortcuts_list
+end known_shortcuts
+
+# Percent-encode the given string and return it.
+on percent_encode(orig_string)
+    set str to current_app's NSString's stringWithString:orig_string
+    set encoded_str to str's ¬
+		stringByAddingPercentEncodingWithAllowedCharacters:(current_app's ¬
+		    NSCharacterSet's URLQueryAllowedCharacterSet)
+    return encoded_str as text
+end percent_encode
+
+# Exit with an error message.
+on fail(msg)
+	# This gets printed to stderr.
+	log "‼️ " & script_name() & " error: " & msg
+	# The AppleScript "error" command prints a message and always exits the
+	# script with status code 1 (regardless of the value for the parameter
+	# "number".) It also prints confusing other text and numbers, and IMHO the
+	# result is confusing. The following is a ridiculously kludgy hack to try
+	# to wipe that message it prints.
+	set backspace_str to ""
+	set blank_str to ""
+	set carriage_return to ASCII character 13
+	set backspace to ASCII character 8
+	repeat 60 times
+		set backspace_str to backspace_str & backspace
+		set blank_str to blank_str & " "
+	end repeat
+	set blank_text to backspace_str & blank_str & carriage_return
+	error blank_text number 1
+end fail
+
+
+# ~~~~ Main body ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+on run {arg as string}
+	if my member(arg, {"help", "-h", "--help"}) then
+		log "Usage: " & script_name() & " SHORTCUT_NAME" & linefeed
+		log "Invokes the Shortcuts app and asks it for the iCloud link for " ¬
+			& "the named shortcut. Prints the result to the terminal. " ¬
+			& "Note that due to limitations in controlling the Shortcuts " ¬
+			& "app programmatically, the approach used by this program " ¬
+			& "involves GUI scripting. During execution, you will see " ¬
+			& "windows and dialogs appear and disappear. This is normal."
+		return
+	end if
+	set shortcut_name to arg
+
+	# Make sure this Shortcut is actually defined.
+	if not my member(shortcut_name, my known_shortcuts()) then
+		my fail("Cannot find '" & shortcut_name & "' among known Shortcuts.")
+		return
+	end if
+
+	# Things behave more predictably if we close & restart the Shortcuts app.
+	my restart_app("Shortcuts")
+
+	# Open the desired shortcut in the Shortcuts app.
+	set encoded_name to my percent_encode(shortcut_name)
+	open location "shortcuts://open-shortcut?name=" & encoded_name
+
+	# Clear the clipboard, so that we can tell when new content appears.
+	set the clipboard to ""
+
+	# Invoke the Shortcuts menu item to copy the iCloud link. There's no way
+	# to do it directly, so we have to resort to GUI scripting. <blech>
+	tell application "System Events"
+		tell application process "Shortcuts"
+			set frontmost to true
+			tell menu bar item "File" of menu bar 1
+				delay gui_delay
+				pick
+				tell menu 1
+					tell menu item "Share"
+						pick
+						delay gui_delay
+						tell menu 1
+							pick
+							click menu item "Copy iCloud Link"
+							delay gui_delay
+						end tell
+					end tell
+				end tell
+			end tell
+		end tell
+	end tell
+
+	# Selecting the the iCloud link menu item causes the Shortcuts app to show
+	# a dialog, and we need to click the "Share" button in that dialog.
+	delay gui_delay * 2
+	tell application "System Events"
+		tell application process "Shortcuts"
+			keystroke return
+		end tell
+	end tell
+	
+	# Shortcuts will write the link to the clipboard, but it takes time.
+	# We have no way to know when it's there except by checking.
+	set times_left to max_clipboard_wait * 2
+	set clipboard_contents to ""
+	repeat while times_left > 0
+		delay 0.5
+		set clipboard_contents to the clipboard as text
+		if clipboard_contents is not "" then
+			exit repeat
+		end if
+		set times_left to (times_left - 1)
+	end repeat
+
+	# Sanity check: do we have a URL in the clipboard?
+	if clipboard_contents does not start with "https://" then
+		my fail("Failed to get an iCloud link for " & shortcut_name)
+		set clipboard_contents to ""
+	end if
+
+	# Close the app, and return the value on the clipboard
+	tell application "Shortcuts"
+		quit saving yes
+	end tell
+
+	return clipboard_contents
+end run
