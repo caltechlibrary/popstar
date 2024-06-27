@@ -1,0 +1,3 @@
+# Assets subdirectory for Popstar's GitHub repository
+
+The only reason this directory exists is to provide the file [`css/style.scss`](css/style.scss) to the GitHub Pages system. The reason for _that_ is to allow the GitHub Pages version of the top-level [`README.md`](../README.md) file to respect the user's dark/light mode settings, which is something that the default GitHub Pages theme doesn't do. The file [`css/style.scss`](css/style.scss) was originally based on the approach implemented by GitHub user [ggorlen](https://github.com/ggorlen) in their repository <https://github.com/ggorlen/resources> and referenced in a [Stack Overflow comment on 2023-07-10](https://stackoverflow.com/a/78038281).
