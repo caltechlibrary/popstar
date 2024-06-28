@@ -26,28 +26,45 @@ property max_clipboard_wait: 5
 
 # ~~~~ Helping hands ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-# Return the given file name without its file name extension, if any.
-on without_ext(file_name)
-	set u to current_app's NSURL's fileURLWithPath:file_name
-	return u's URLByDeletingPathExtension()'s lastPathComponent() as text
-end without_ext
+# Return the basename of a file path, without directory components or suffix.
+on basename(file_path)
+	set fp to current_app's NSString's stringWithString:file_path
+	return fp's stringByDeletingPathExtension()'s lastPathComponent() as text
+end basename
 
 # Return the file name of this script as a string, minus the extension.
 on script_name()
     tell application "System Events"
         set path_alias to path to me
 		set file_name to name of path_alias
-		return my without_ext(file_name)
+		return my basename(file_name)
     end tell
 end script_name
 
 # Return true if the str is one of the values in the list_of_strings.
 on member(str, list_of_strings)
 	ignoring case
-		set nsArray to current_app's |NSArray|'s arrayWithArray:list_of_strings
-		return (nsArray's containsObject:str) as boolean
+		set arr to current_app's |NSArray|'s arrayWithArray:list_of_strings
+		return (arr's containsObject:str) as boolean
 	end ignoring
 end member
+
+# Return a string consisting of "character" repeated "count" times.
+on char_string(char, num)
+    set c to current_app's NSString's stringWithString:char
+    set blank to current_app's NSString's |string|()
+    set str to blank's stringByPaddingToLength:num withString:c startingAtIndex:0
+    return str as text
+end char_string
+
+# Percent-encode the given string and return it.
+on percent_encoded(orig_string)
+    set str to current_app's NSString's stringWithString:orig_string
+    set encoded_str to str's ¬
+		stringByAddingPercentEncodingWithAllowedCharacters:(current_app's ¬
+		    NSCharacterSet's URLQueryAllowedCharacterSet)
+    return encoded_str as text
+end percent_encoded
 
 # Quit and restart application, wait to see it launched, and bring it to the
 # front. Only waits for a limited time, in case something is wrong.
@@ -69,7 +86,8 @@ on restart_app(app_name)
 		set times_left to (times_left - 1)
 	end repeat
 	if times_left ≤ 0 then
-		my fail("Timed out waiting for " & app_name & " to launch.")
+		my alert("timed out waiting for " & app_name & " to launch.")
+		my fail()
 	end if
 end launch_app
 
@@ -84,9 +102,9 @@ on known_shortcuts()
 		set shell_output to do shell script "shortcuts list"
 	on error msg number code
 		if the code is not -128 then
-			my fail("Unable to get a list of known shortcuts: " ¬
+			my alert("unable to get a list of known shortcuts: " ¬
 				& msg & " (error code " & code & ")")
-			return
+			my fail()
 		end if
 	end try
 	set shortcuts_list to text items of shell_output
@@ -94,32 +112,22 @@ on known_shortcuts()
 	return shortcuts_list
 end known_shortcuts
 
-# Percent-encode the given string and return it.
-on percent_encode(orig_string)
-    set str to current_app's NSString's stringWithString:orig_string
-    set encoded_str to str's ¬
-		stringByAddingPercentEncodingWithAllowedCharacters:(current_app's ¬
-		    NSCharacterSet's URLQueryAllowedCharacterSet)
-    return encoded_str as text
-end percent_encode
-
-# Exit with an error message.
-on fail(msg)
-	# This gets printed to stderr.
+# Print an error message.
+on alert(msg)
 	log "‼️ " & script_name() & " error: " & msg
+end alert
+
+# Exit with an non-zero status code. The status code returned to the parent
+# shell is always 1. (Seems to be a limitation of osascript.)
+on fail()
 	# The AppleScript "error" command prints a message and always exits the
 	# script with status code 1 (regardless of the value for the parameter
 	# "number".) It also prints confusing other text and numbers, and IMHO the
 	# result is confusing. The following is a ridiculously kludgy hack to try
 	# to wipe that message it prints.
-	set backspace_str to ""
-	set blank_str to ""
+	set blank_str to my char_string(" ", 70)
+	set backspace_str to my char_string(ASCII character 8, 70)
 	set carriage_return to ASCII character 13
-	set backspace to ASCII character 8
-	repeat 60 times
-		set backspace_str to backspace_str & backspace
-		set blank_str to blank_str & " "
-	end repeat
 	set blank_text to backspace_str & blank_str & carriage_return
 	error blank_text number 1
 end fail
@@ -127,30 +135,64 @@ end fail
 
 # ~~~~ Main body ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-on run {arg as string}
-	if my member(arg, {"help", "-h", "--help"}) then
-		log "Usage: " & script_name() & " SHORTCUT_NAME" & linefeed
-		log "Invokes the Shortcuts app and asks it for the iCloud link for " ¬
-			& "the named shortcut. Prints the result to the terminal. " ¬
-			& "Note that due to limitations in controlling the Shortcuts " ¬
-			& "app programmatically, the approach used by this program " ¬
-			& "involves GUI scripting. During execution, you will see " ¬
-			& "windows and dialogs appear and disappear. This is normal."
+on print_usage()
+	set my_name to my script_name()
+	set name_len to (count of characters of my_name)
+	set padding to my char_string(" ", name_len)
+	log "Usage: " & script_name() & " shortcut_name"
+	log "       " & script_name() & " -h"
+	log ""
+	log "If given the argument -h, this program prints a usage summary"
+	log "and exits."
+	log ""
+	log "Otherwise, this program expects a single argument: the name of a"
+	log "Shortcut, and returns an iCloud sharing link for that Shortcut. It"
+	log "does this by invoking the Shortcuts app and asking it for the iCloud"
+	log "link for the 'shortcut_name' given as the argument on the command"
+	log "line. The named Shortcut must be defined among the Shortcuts"
+	log "available to the user account running this program, or an error will"
+	log "result."
+	log ""
+	log "Note that due to limitations in controlling the MacOS Shortcuts app"
+	log "programmatically, the approach used by this program involves GUI"
+	log "scripting. Consequently, while it runs, you will see windows and"
+	log "dialogs appear and disappear on your computer. This is normal."
+end print_usage
+
+on run argv
+	# Do sanity checks and handle early exits.
+	if (count of argv) is 0 then
+		my print_usage()
 		return
 	end if
-	set shortcut_name to arg
+	repeat with arg in argv
+		if my member(arg, {"help", "-h", "--help"}) then
+			my print_usage()
+			return
+		end if
+	end repeat
+	if (count of argv) > 1 then
+		my alert("given too many arguments.")
+		my print_usage()
+		my fail()
+	end if
+
+	# Check that the argument is a Shortcut name, not a file name. If it's
+	# a file name, assume that the file's basename is the Shortcut name;
+	# e.g., "My shortcut.shortcut" is assumed to be "My shortcut".
+	set shortcut_name to my basename(first item of argv)
 
 	# Make sure this Shortcut is actually defined.
 	if not my member(shortcut_name, my known_shortcuts()) then
-		my fail("Cannot find '" & shortcut_name & "' among known Shortcuts.")
-		return
+		my alert("cannot find '" & shortcut_name & "' among known Shortcuts.")
+		my fail()
 	end if
 
 	# Things behave more predictably if we close & restart the Shortcuts app.
 	my restart_app("Shortcuts")
 
 	# Open the desired shortcut in the Shortcuts app.
-	set encoded_name to my percent_encode(shortcut_name)
+	set encoded_name to my percent_encoded(shortcut_name)
 	open location "shortcuts://open-shortcut?name=" & encoded_name
 
 	# Clear the clipboard, so that we can tell when new content appears.
@@ -162,7 +204,6 @@ on run {arg as string}
 		tell application process "Shortcuts"
 			set frontmost to true
 			tell menu bar item "File" of menu bar 1
-				delay gui_delay
 				pick
 				tell menu 1
 					tell menu item "Share"
@@ -203,8 +244,10 @@ on run {arg as string}
 
 	# Sanity check: do we have a URL in the clipboard?
 	if clipboard_contents does not start with "https://" then
-		my fail("Failed to get an iCloud link for " & shortcut_name)
+		# Clear the clipboard in case something unexpected got written to it.
 		set clipboard_contents to ""
+		my alert("failed to get an iCloud link for " & shortcut_name)
+		my fail()
 	end if
 
 	# Close the app, and return the value on the clipboard
