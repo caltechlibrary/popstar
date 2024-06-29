@@ -17,8 +17,8 @@ property current_app: a reference to current application
 # Max time (in sec) to wait for the Shortcuts app to launch.
 property max_app_startup_wait: 15
 
-# Delay (in sec) introduced between steps when picking/clicking on menu items.
-property gui_delay: 0.25
+# Max time (in sec) to wait for a user interface element to appear.
+property max_ui_wait: 10
 
 # Max time (in sec) to wait for Shortcuts to write a link to the clipboard.
 property max_clipboard_wait: 5
@@ -65,6 +65,37 @@ on percent_encoded(orig_string)
 		    NSCharacterSet's URLQueryAllowedCharacterSet)
     return encoded_str as text
 end percent_encoded
+
+# Wait for the clipboard to be non-empty and return the content as a string.
+# Assumes the clipboard is empty when invoked.
+on new_clipboard_content()
+	set times_left to max_clipboard_wait * 4     # Done in 0.25 sec steps.
+	repeat while times_left > 0
+		delay 0.25
+		set ctext to the clipboard as text
+		if ctext is not "" then
+			return ctext
+		end if
+		set times_left to (times_left - 1)
+	end repeat
+	return ""
+end new_clipboard_content
+
+# Wait for a given UI element (e.g., a menu item) to appear, and return. If the
+# max wait timeout is exceeded, exit with an error. Note: callers must invoke
+# this using "a reference to foo" instead of "foo", because presumably "foo"
+# doesn't exist yet and thus can't be passed directly as a parameter.
+on wait_for_ui(thing)
+	set times_left to max_ui_wait * 4     # Done in 0.25 sec steps.
+	repeat while times_left > 0
+		delay 0.25
+		if exists thing then
+			return
+		end if
+		set times_left to (times_left - 1)
+	end repeat
+	my fail("timed out waiting for a UI element to appear")
+end wait_for_ui
 
 # Quit and restart application, wait to see it launched, and bring it to the
 # front. Only waits for a limited time, in case something is wrong.
@@ -199,61 +230,44 @@ on run argv
 	set the clipboard to ""
 
 	# Invoke the Shortcuts menu item to copy the iCloud link. There's no way
-	# to do it directly, so we have to resort to GUI scripting. <blech>
+	# to do it directly, so we have to resort to GUI scripting to select the
+	# menu item and click on a confirmation dialog. [blech]
 	tell application "System Events"
 		tell application process "Shortcuts"
 			set frontmost to true
-			tell menu bar item "File" of menu bar 1
-				pick
-				tell menu 1
-					tell menu item "Share"
+			my wait_for_ui(a reference to menu bar 1)
+			tell menu bar 1
+				my wait_for_ui(a reference to menu bar item "File")
+				tell menu bar item "File"
+					pick
+					my wait_for_ui(a reference to menu item "Share" of menu 1)
+					tell menu item "Share" of menu 1
 						pick
-						delay gui_delay
+						my wait_for_ui(a reference to menu 1)
 						tell menu 1
 							pick
 							click menu item "Copy iCloud Link"
-							delay gui_delay
 						end tell
 					end tell
 				end tell
 			end tell
-		end tell
-	end tell
-
-	# Selecting the the iCloud link menu item causes the Shortcuts app to show
-	# a dialog, and we need to click the "Share" button in that dialog.
-	delay gui_delay * 2
-	tell application "System Events"
-		tell application process "Shortcuts"
-			keystroke return
+			my wait_for_ui(a reference to sheet 1 of window 1)
+			click button "Share" of sheet 1 of window 1
 		end tell
 	end tell
 	
 	# Shortcuts will write the link to the clipboard, but it takes time.
-	# We have no way to know when it's there except by checking.
-	set times_left to max_clipboard_wait * 2
-	set clipboard_contents to ""
-	repeat while times_left > 0
-		delay 0.5
-		set clipboard_contents to the clipboard as text
-		if clipboard_contents is not "" then
-			exit repeat
-		end if
-		set times_left to (times_left - 1)
-	end repeat
-
-	# Sanity check: do we have a URL in the clipboard?
-	if clipboard_contents does not start with "https://" then
-		# Clear the clipboard in case something unexpected got written to it.
-		set clipboard_contents to ""
-		my alert("failed to get an iCloud link for " & shortcut_name)
-		my fail()
+	# We have no way to know when it's there except by checking repeatedly.
+	set clipboard_content to my new_clipboard_content()
+	if clipboard_content starts with "https://" then
+		# Close the app, and return the value on the clipboard
+		tell application "Shortcuts"
+			quit saving yes
+		end tell
+		return clipboard_content
 	end if
 
-	# Close the app, and return the value on the clipboard
-	tell application "Shortcuts"
-		quit saving yes
-	end tell
-
-	return clipboard_contents
+	# We failed to get a URL from the clipboard.
+	my alert("failed to get an iCloud link for " & shortcut_name)
+	my fail()
 end run
