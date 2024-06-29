@@ -124,7 +124,6 @@ end launch_app
 
 # Return a list of known Shortcut names.
 on known_shortcuts()
-	local orig_delims, shell_output, shortcuts_list
 	set orig_delims to AppleScript's text item delimiters
 	set AppleScript's text item delimiters to (ASCII character 13)
 	try
