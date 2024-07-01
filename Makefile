@@ -1,4 +1,4 @@
-# Makefile for developing Popstar.
+# Summary: Makefile for developing Popstar.
 # Run "make" or "make help" to get a list of commands in this makefile.
 #
 # Copyright 2024 California Institute of Technology.
@@ -147,11 +147,39 @@ endif
 confirm-release:
 	@read -p "Have you updated the version number? [y/N] " ans && : $${ans:=N} ;\
 	if [ $${ans::1} != y ]; then \
-	  echo ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-	  echo ┃ Update the version number in codemeta.json first. ┃
-	  echo ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+	  $(MAKE) --no-print-directory print-version-reminder
 	  exit 1
 	fi
+
+print-version-reminder:
+	@$(info ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓)
+	@$(info ┃ First update the version number in codemeta.json. ┃)
+	@$(info ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛)
+
+release-on-github: | update-all commit-updates push-to-github
+	$(eval notes_file := $(shell mktemp /tmp/$(progname)-rel-notes.XXX))
+	$(eval tag := "v$(shell tr -d '()' <<< "$(version)" | tr ' ' '-')")
+	@echo '## Changes in this release'		 	  > $(notes_file)
+	@echo ''						 >> $(notes_file)
+	@echo '<!-- Replace this comment with release notes -->' >> $(notes_file)
+	@echo ''						 >> $(notes_file)
+	@echo '## Installation links for the latest Shortcuts'	 >> $(notes_file)
+	@echo ''						 >> $(notes_file)
+	@for file in src/*.shortcut; do
+	  name=$${file#src/}
+	  name=$${name%.shortcut}
+	  link=`dev/scripts/get-shortcut-link "$${name}"`
+	  echo "* [$${name}]($${link})" >> $(notes_file)
+	done
+	@echo '' >> $(notes_file)
+	@$(info ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓)
+	@$(info ┃ Write release notes in the file that gets opened in your  ┃)
+	@$(info ┃ editor. Close the editor to complete the release process. ┃)
+	@$(info ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛)
+	sleep 2
+	$(EDITOR) $(notes_file)
+	gh release create $(tag) -t "Release $(version)" -F $(notes_file)
+	gh release edit $(tag) --latest
 
 update-all: update-meta update-citation
 
@@ -178,19 +206,9 @@ commit-updates:
 	git diff-index --quiet HEAD $(edited) || \
 	    git commit -m"chore: update stored version number" $(edited)
 
-release-on-github: | update-all commit-updates
-	$(eval tmp_file := $(shell mktemp /tmp/release-notes-$(progname).XXXX))
-	$(eval tag := "v$(shell tr -d '()' <<< "$(version)" | tr ' ' '-')")
+push-to-github:
 	git push -v --all
 	git push -v --tags
-	@$(info ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓)
-	@$(info ┃ Write release notes in the file that gets opened in your  ┃)
-	@$(info ┃ editor. Close the editor to complete the release process. ┃)
-	@$(info ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛)
-	sleep 2
-	$(EDITOR) $(tmp_file)
-	gh release create $(tag) -t "Release $(version)" -F $(tmp_file)
-	gh release edit $(tag) --latest
 
 wait-on-iga:
 	@$(info ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓)
