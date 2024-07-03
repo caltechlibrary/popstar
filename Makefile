@@ -30,13 +30,14 @@ TEST := $(foreach p,$(programs_needed),\
 # Set some basic variables. These are quick to set; we set additional ones
 # using the dependency named "vars" but only when the others are needed.
 
-name	 := $(strip $(shell jq -r .name codemeta.json))
-progname := $(strip $(shell jq -r '.identifier | ascii_downcase' codemeta.json))
-version	 := $(strip $(shell jq -r .version codemeta.json))
-repo	 := $(shell git ls-remote --get-url | sed -e 's/.*:\(.*\).git/\1/')
-repo_url := https://github.com/$(repo)
-branch	 := $(shell git rev-parse --abbrev-ref HEAD)
-today	 := $(shell date "+%F")
+name	  := $(strip $(shell jq -r .name codemeta.json))
+progname  := $(strip $(shell jq -r '.identifier | ascii_downcase' codemeta.json))
+version	  := $(strip $(shell jq -r .version codemeta.json))
+repo	  := $(shell git ls-remote --get-url | sed -e 's/.*:\(.*\).git/\1/')
+repo_url  := https://github.com/$(repo)
+branch	  := $(shell git rev-parse --abbrev-ref HEAD)
+rel_notes := .release_notes.md
+today	  := $(shell date "+%F")
 
 
 # Print help if no command is given ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -47,13 +48,13 @@ today	 := $(shell date "+%F")
 
 #: Print a summary of available commands.
 help:
-	@echo "This is the Makefile for $(bright)$(name)$(reset)."
+	@echo "This is the Makefile for $(bold)$(name)$(norm)."
 	@echo "Available commands:"
 	@echo
 	@grep -B1 -E "^[a-zA-Z0-9_-]+\:([^\=]|$$)" $(MAKEFILE_LIST) \
 	| grep -v -- -- \
 	| sed 'N;s/\n/###/' \
-	| sed -n 's/^#: \(.*\)###\(.*\):.*/$(color)\2$(reset):###\1/p' \
+	| sed -n 's/^#: \(.*\)###\(.*\):.*/$(emph)\2$(norm):###\1/p' \
 	| column -t -s '###'
 
 #: Summarize how to do a release using this makefile.
@@ -64,17 +65,17 @@ define instructions_text =
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃ Steps for doing a release                                          ┃
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
- 1. Run $(color)make lint$(reset), fix any problems, and commit any changes.
+ 1. Run $(emph)make lint$(norm), fix any problems, and commit any changes.
  2. Update the version number in the file codemeta.json.
  3. Update CHANGES.md if needed & commit changes.
- 4. Check the output of $(color)make report$(reset) (ignoring current id & DOI).
- 5. Run $(color)make clean$(reset).
- 6. Run $(color)make release$(reset); after some steps, it will open a file
+ 4. Check the output of $(emph)make report$(norm) (ignoring current id & DOI).
+ 5. Run $(emph)make clean$(norm).
+ 6. Run $(emph)make release$(norm); after some steps, it will open a file
     in your editor to write GitHub release notes. Copy the notes
     from CHANGES.md. Save the opened file to finish the process.
  7. Wait for the IGA GitHub Action to finish uploading to InvenioRDM
  8. Check that everything looks okay with the GitHub release at
-    $(link)$(repo_url)/releases$(reset)
+    $(link)$(repo_url)/releases$(norm)
 endef
 
 
@@ -107,18 +108,18 @@ endif
 #: Print variables set in this Makefile from various sources.
 .SILENT: report
 report: vars
-	echo "$(color)name$(reset)	 = $(name)"	  | expand -t 21
-	echo "$(color)progname$(reset)	 = $(progname)"   | expand -t 21
-	echo "$(color)desc$(reset)	 = $(desc)"	  | expand -t 21
-	echo "$(color)version$(reset)	 = $(version)"	  | expand -t 21
-	echo "$(color)author$(reset)	 = $(author)"	  | expand -t 21
-	echo "$(color)email$(reset)	 = $(email)"	  | expand -t 21
-	echo "$(color)license$(reset)	 = $(license)"	  | expand -t 21
-	echo "$(color)url$(reset)	 = $(url)"	  | expand -t 21
-	echo "$(color)repo url$(reset)	 = $(repo_url)"   | expand -t 21
-	echo "$(color)branch$(reset)	 = $(branch)"	  | expand -t 21
-	echo "$(color)rdm_id$(reset)	 = $(rdm_id)"	  | expand -t 21
-	echo "$(color)latest_doi$(reset) = $(latest_doi)" | expand -t 21
+	echo "$(emph)name$(norm)	 = $(name)"	  | expand -t 21
+	echo "$(emph)progname$(norm)	 = $(progname)"   | expand -t 21
+	echo "$(emph)desc$(norm)	 = $(desc)"	  | expand -t 21
+	echo "$(emph)version$(norm)	 = $(version)"	  | expand -t 21
+	echo "$(emph)author$(norm)	 = $(author)"	  | expand -t 21
+	echo "$(emph)email$(norm)	 = $(email)"	  | expand -t 21
+	echo "$(emph)license$(norm)	 = $(license)"	  | expand -t 21
+	echo "$(emph)url$(norm)	 = $(url)"	  | expand -t 21
+	echo "$(emph)repo url$(norm)	 = $(repo_url)"   | expand -t 21
+	echo "$(emph)branch$(norm)	 = $(branch)"	  | expand -t 21
+	echo "$(emph)rdm_id$(norm)	 = $(rdm_id)"	  | expand -t 21
+	echo "$(emph)latest_doi$(norm) = $(latest_doi)" | expand -t 21
 
 
 # make lint & make test ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -137,7 +138,7 @@ test tests:;
 # make release ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #: Make a release on GitHub.
-release: | test-branch confirm-release release-on-github wait-on-iga update-doi
+release: | test-branch confirm-release update-all release-on-github update-doi
 
 test-branch:
 ifneq ($(branch),main)
@@ -156,32 +157,12 @@ print-version-reminder:
 	@$(info ┃ First update the version number in codemeta.json. ┃)
 	@$(info ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛)
 
-release-on-github: | update-all commit-updates push-to-github
-	$(eval notes_file := $(shell mktemp /tmp/$(progname)-rel-notes.XXX))
+release-on-github: | vars update-all write-release-notes
 	$(eval tag := "v$(shell tr -d '()' <<< "$(version)" | tr ' ' '-')")
-	@echo '## Changes in this release'		 	  > $(notes_file)
-	@echo ''						 >> $(notes_file)
-	@echo '<!-- Replace this comment with release notes -->' >> $(notes_file)
-	@echo ''						 >> $(notes_file)
-	@echo '## Installation links for the latest Shortcuts'	 >> $(notes_file)
-	@echo ''						 >> $(notes_file)
-	@for file in src/*.shortcut; do
-	  name=$${file#src/}
-	  name=$${name%.shortcut}
-	  link=`dev/scripts/get-shortcut-link "$${name}"`
-	  echo "* [$${name}]($${link})" >> $(notes_file)
-	done
-	@echo '' >> $(notes_file)
-	@$(info ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓)
-	@$(info ┃ Write release notes in the file that gets opened in your  ┃)
-	@$(info ┃ editor. Close the editor to complete the release process. ┃)
-	@$(info ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛)
-	sleep 2
-	$(EDITOR) $(notes_file)
-	gh release create $(tag) -t "Release $(version)" -F $(notes_file)
+	gh release create $(tag) -t "Release $(version)" -F $(rel_notes)
 	gh release edit $(tag) --latest
 
-update-all: update-meta update-citation
+update-all: update-meta update-citation commit-updates
 
 # Note that this doesn't replace "version" in codemeta.json, because that's the
 # variable from which this makefile gets its version number in the first place.
@@ -205,27 +186,48 @@ commit-updates:
 	git add $(edited)
 	git diff-index --quiet HEAD $(edited) || \
 	    git commit -m"chore: update stored version number" $(edited)
-
-push-to-github:
 	git push -v --all
 	git push -v --tags
 
+write-release-notes: | create-notes-template edit-notes-template
+
+create-notes-template:
+	@$(info ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓)
+	@$(info ┃ For the next few minutes, the Shortcuts app will restart  ┃)
+	@$(info ┃ multiple times and dialog boxes will open and close. This ┃)
+	@$(info ┃ is a side-effect of the workflow for obtaining the iCloud ┃)
+	@$(info ┃ release URLs for the Shortcuts.                           ┃)
+	@$(info ┃                                                           ┃)
+	@$(info ┃ $(bold)Do not touch your computer until this process finishes.$(norm)   ┃)
+	@$(info ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛)
+	@cp dev/templates/RELEASE_NOTES_TEMPLATE.md $(rel_notes)
+	@for file in src/*.shortcut; do
+	  name=$${file#src/}
+	  name=$${name%.shortcut}
+	  link=`dev/scripts/get-shortcut-link "$${name}"`
+	  echo "* [$${name}]($${link})" >> $(rel_notes)
+	done
+
+edit-notes-template:
+	@$(info ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓)
+	@$(info ┃ The iCloud links workflow has finished. Now a template    ┃)
+	@$(info ┃ file will be opened in your default text editor. Write    ┃)
+	@$(info ┃ release notes in the file, save the file, and close the   ┃)
+	@$(info ┃ editor window to complete the release process.            ┃)
+	@$(info ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛)
+	sleep 2
+	$(EDITOR) $(rel_notes)
+
+update-doi: | wait-on-iga
+	$(MAKE) post-release
+
 wait-on-iga:
-	@$(info ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓)
-	@$(info ┃ Wait for the archiving workflow to finish on GitHub ┃)
-	@$(info ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛)
+	@$(info ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓)
+	@$(info ┃ Wait for the archiving workflow to finish on GitHub. ┃)
+	@$(info ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛)
 	sleep 2
 	$(eval pid := $(shell gh run list --workflow=iga.yml --limit 1 | tail -1 | awk -F $$'\t' '{print $$7}'))
 	gh run watch $(pid)
-	$(MAKE) post-release
-
-print-next-steps: vars
-	@$(info ┏━━━━━━━━━━━━┓)
-	@$(info ┃ Next steps ┃)
-	@$(info ┗━━━━━━━━━━━━┛)
-	@$(info  Next steps: )
-	@$(info  1. Check $(repo_url)/releases )
-	@$(info  That is all. )
 
 # We only do the following steps if this is software we archive in InvenioRDM.
 #
@@ -233,7 +235,7 @@ print-next-steps: vars
 # InvenioRDM to the latest release. However, the DOI in CITATION.cff and the
 # field relatedLink in codemeta.json need to point to the release we just made.
 
-post-release: update-citation-doi update-codemeta-link push-updates
+post-release: | update-citation-doi update-codemeta-link push-updates
 
 update-citation-doi: vars
 	@if [ -n "$(latest_doi)" ]; then
@@ -267,6 +269,7 @@ clean: clean-release
 
 clean-release:;
 	rm -rf codemeta.json.bak README.md.bak sample-workflow.yml.bak
+	rm -f $(rel_notes)
 
 
 # Miscellaneous directives ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -276,11 +279,11 @@ joke:
 	@echo "$(shell curl -s https://icanhazdadjoke.com/)"
 
 # Color codes used in messages.
-color  := $(shell tput bold; tput setaf 6)
-bright := $(shell tput bold; tput setaf 15)
-dim    := $(shell tput setaf 66)
-link   := $(shell tput setaf 111)
-reset  := $(shell tput sgr0)
+emph := $(shell tput bold; tput setaf 6)
+bold := $(shell tput bold; tput setaf 15)
+dark := $(shell tput setaf 66)
+link := $(shell tput setaf 111)
+norm := $(shell tput sgr0)
 
 .PHONY: help vars report release test-branch test tests update-all \
 	update-init update-meta update-citation update-example commit-updates \
