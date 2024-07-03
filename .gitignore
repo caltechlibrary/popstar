@@ -24,3 +24,5 @@
 docs/_build
 *.tmp
 *.log
+*.bak
+.release_notes.md
