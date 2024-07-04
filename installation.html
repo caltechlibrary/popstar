@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="blue-grey">
+  <script src="_static/javascripts/modernizr.js"></script>
+  
+  
+  
+    <title>Installation and configuration &#8212; Popstar</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=83e35b93" />
+    <link rel="stylesheet" type="text/css" href="_static/material.css?v=79c92029" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=557b54f6" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Usage" href="usage.html" />
+    <link rel="prev" title="The overall setup and workflow" href="overview.html" />
+  
+   
+
+  </head>
+  <body dir=ltr
+        data-md-color-primary=deep-orange data-md-color-accent=teal>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#installation" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="index.html" title="Popstar"
+           class="md-header-nav__button md-logo">
+          
+            &nbsp;
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          <span class="md-header-nav__topic">Popstar</span>
+          <span class="md-header-nav__topic"> Installation and configuration </span>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+        
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="search.html" method="get" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder=""Search""
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            <a href="https://github.com/caltechlibrary/popstar/" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    popstar
+  </div>
+</a>
+          </div>
+        </div>
+      
+      
+    </div>
+  </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    
+  <nav class="md-tabs" data-md-component="tabs">
+    <div class="md-tabs__inner md-grid">
+      <ul class="md-tabs__list">
+          <li class="md-tabs__item"><a href="index.html" class="md-tabs__link">Home</a></li>
+      </ul>
+    </div>
+  </nav>
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="index.html" title="Popstar" class="md-nav__button md-logo">
+      
+        <img src="_static/" alt=" logo" width="48" height="48">
+      
+    </a>
+    <a href="index.html"
+       title="Popstar">Popstar</a>
+  </label>
+    <div class="md-nav__source">
+      <a href="https://github.com/caltechlibrary/popstar/" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    popstar
+  </div>
+</a>
+    </div>
+  
+  
+
+  
+  <ul class="md-nav__list">
+    <li class="md-nav__item">
+    
+    
+      <a href="overview.html" class="md-nav__link">The overall setup and workflow</a>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="overview.html#example-archiving-project" class="md-nav__link">Example archiving project</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="overview.html#example-workflow-using-popstar" class="md-nav__link">Example workflow using Popstar</a>
+      
+    
+    </li></ul>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <label class="md-nav__link md-nav__link--active" for="__toc"> Installation and configuration </label>
+    
+      <a href="#" class="md-nav__link md-nav__link--active">Installation and configuration</a>
+      
+        
+<nav class="md-nav md-nav--secondary">
+  <ul class="md-nav__list" data-md-scrollfix="">
+  </ul>
+</nav>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="#popstar-software-installation" class="md-nav__link">Popstar software installation</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#optional-external-keypad-configuration" class="md-nav__link">(Optional) External keypad configuration</a>
+      
+    
+    </li></ul>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="usage.html" class="md-nav__link">Usage</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="colophon.html" class="md-nav__link">Colophon</a>
+      
+    
+    </li>
+  </ul>
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+  <ul class="md-nav__list" data-md-scrollfix="">
+  </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <section id="installation-and-configuration">
+<h1 id="installation--page-root">Installation and configuration<a class="headerlink" href="#installation--page-root" title="Link to this heading">¶</a></h1>
+<p>The overall workflow is divided into a number of separate Shortcuts. Some of the Shortcuts – the primary actions in the scanning workflow – are meant to be invoked directly by the user; other Shortcuts act as helpers and are not meant to be invoked by users directly. All of them need to be installed on an iPhone for Popstar to function.</p>
+<section id="popstar-software-installation">
+<h2 id="popstar-software-installation">Popstar software installation<a class="headerlink" href="#popstar-software-installation" title="Link to this heading">¶</a></h2>
+<p>There are two alternative approaches for installing Popstar, with variations possible within those general approaches. In addition, Popstar requires a certain third-party application to be installed as well.</p>
+<p>Depending on your needs and preferences, the Popstar software can be installed directly on an iPhone, or it can be installed first on a MacOS computer or an iPad, and then taking advantage of the Apple’s automatic synchronization of Shortcuts between devices that share the same Apple account ID. The latter approach only works if the account on the iPhone is tied to the same account on the Mac where the shortcuts are imported; however, editing Shortcuts is more convenient to do on a Mac than on an iPhone, so this approach is preferable for developers.</p>
+<section id="prerequisite-software">
+<h3 id="prerequisite-software">Prerequisite software<a class="headerlink" href="#prerequisite-software" title="Link to this heading">¶</a></h3>
+<p><a class="shadowed reference internal" href="_images/toolbox-pro-icon.png"><img alt="_images/toolbox-pro-icon.png" class="shadowed align-right" src="_images/toolbox-pro-icon.png" style="width: 3em;"/></a> The Popstar Shortcuts rely on a free third-party application, <a class="reference external" href="https://toolboxpro.app">Toolbox Pro</a>, that must be installed separately. It can be found in the Apple App Store by searching for “Toolbox Pro”. The app icon is a white hammer on a blue-green background; the version number at the time of this writing is 2024.4.</p>
+</section>
+<section id="approach-1-using-icloud-links">
+<h3 id="approach-1-using-icloud-links">Approach #1: using iCloud Links<a class="headerlink" href="#approach-1-using-icloud-links" title="Link to this heading">¶</a></h3>
+<p>Any Shortcut can be distributed online via Apple’s servers such that users only need to open a certain URL and the Shortcuts app will initiate an installation process. We provide iCloud links for Popstar with each release. To install the Shortcuts this way, navigate to the <a class="reference external" href="https://github.com/caltechlibrary/popstar/releases">Popstar releases page on GitHub</a> using a web browser, then underneath the section heading for the latest release on the page, look for a subsection titled <em>Installation links for the latest Shortcuts</em>. Find and click on the link for each Shortcut one at a time to install it.</p>
+</section>
+<section id="approach-2-using-files">
+<h3 id="approach-2-using-files">Approach #2: using files<a class="headerlink" href="#approach-2-using-files" title="Link to this heading">¶</a></h3>
+<p>Shortcuts can be saved as files, and the resulting files can be imported into the Shortcuts app. The files in the GitHub repository for Popstar can be loaded into the Shortcuts app this way (in effect, using GitHub’s servers instead of Apple’s iCloud servers). This approach is not recommended for most users because the files on GitHub may represent work in progress and not be in a state suitable for use by people other than the developers.</p>
+<p>If you wish to proceed anyway, you can do it in one of two ways:</p>
+<ol class="arabic simple">
+<li><p>Visit <a class="reference external" href="https://github.com/caltechlibrary/popstar/src">https://github.com/caltechlibrary/popstar/src</a> in a web browser, look for the files whose names end in <code class="docutils literal notranslate"><span class="pre">.shortcut</span></code>, and click on each file name in turn to install the Shortcuts.</p></li>
+<li><p>Clone Popstar’s GitHub repository to your local Mac computer, then visit the <code class="docutils literal notranslate"><span class="pre">src</span></code> subdirectory in the MacOS Finder, and double-click on each <code class="docutils literal notranslate"><span class="pre">.shortcut</span></code> file to make the Shortcuts app import them.</p></li>
+</ol>
+</section>
+</section>
+<section id="optional-external-keypad-configuration">
+<h2 id="optional-external-keypad-configuration">(Optional) External keypad configuration<a class="headerlink" href="#optional-external-keypad-configuration" title="Link to this heading">¶</a></h2>
+<p>The Shortcuts app provides software buttons to run shortcuts, and in fact, is all that’s really needed to run the Popstar workflow. However, reaching the buttons is difficult when the phone is mounted over a work surface. For this reason, we have been using a wireless button device to trigger the Popstar workflow steps.</p>
+<section id="device-choice">
+<h3 id="device-choice">Device choice<a class="headerlink" href="#device-choice" title="Link to this heading">¶</a></h3>
+<p>Our current device is a <a class="reference external" href="https://web.archive.org/web/20240426133138/https://store.huion.com/products/huion-keydial-mini">HUION Keydial Mini Bluetooth Programmable Keypad</a> bought in early April 2024 for approximately US $60.</p>
+<figure>
+<img align="middle" class="shadowed" src="_static/media/huion-keypad.jpeg" width="40%"/>
+<figcaption>Our HUION Keydial Mini Bluetooth Programmable Keypad, with custom labels that we printed, skillfully cut, and stuck on the keys we use for the Popstar workflow.</figcaption>
+</figure>
+<p>There are many similar devices available via online retailers. Many others would likely do; the main criteria for a suitable device are that (1) it can pair with an iPhone, and (2) the buttons send keypress events that can be used as triggers for Shortcuts in the iOS accessibility preferences. (Not all bluetooth external keypad devices meet those criteria. This device by HUION was one of three tried; two worked suitably, and this one was chosen because it had a more convenient button layout.)</p>
+<p>We are currently using only 3 of the buttons, for the following actions:</p>
+<ol class="arabic simple">
+<li><p>Start a new destination box</p></li>
+<li><p>Start a new destination folder within the current destination box</p></li>
+<li><p>Take a photo of a document page to file in the current destination folder</p></li>
+</ol>
+<p>There is an additional step, to initialize Popstar; this step must be performed once at the beginning of a new archiving project and requires typing text, so it is more convenient to do with the phone in hand and consequently does not need a hardware button assigned to it.</p>
+</section>
+<section id="device-setup">
+<h3 id="device-setup">Device Setup<a class="headerlink" href="#device-setup" title="Link to this heading">¶</a></h3>
+<p>Once the Shortcuts for the workflow are installed on an iPhone as described in a <a class="reference internal" href="#popstar-software-installation"><span class="xref myst">section above</span></a>, some additional and nonobvious steps are required to enable a device such as the HUION keypad to trigger Shortcuts on demand.</p>
+<p>On iPhones running iOS 17 or earlier, the only method we have found is to set up the keypad using the iOS <a class="reference external" href="https://web.archive.org/web/20240208094118/https://support.apple.com/guide/iphone/turn-on-accessibility-features-for-setup-iph2f623a095/17.0/ios/17.0">Accessibility</a> features. The following is the procedure we use:</p>
+<ol class="arabic simple">
+<li><p>On the phone, go to the iOS <em>Settings</em> app</p></li>
+<li><p>Tap on <em>Accessibility</em></p></li>
+<li><p>Scroll down the list to the section titled “physical and motor” and tap on <em>Keyboards</em></p></li>
+<li><p>Tap on <em>Full Keyboard Access</em></p></li>
+<li><p>Turn on <em>Full Keyboard Access</em> via the toggle</p></li>
+<li><p>Tap on <em>Commands</em> in the middle of the same screen</p></li>
+<li><p>Scroll the (long) list of items until you find the section titled “Shortcuts”</p></li>
+<li><p>Look for the 3 main workflow shortcut names: “Start new destination box”, “Start new destination folder”, and “Take photo of document page”</p></li>
+<li><p>Assign keys of your choosing to the 3 shortcuts</p></li>
+</ol>
+<p>More information about using external keyboards with iPhones can be found in <a class="reference external" href="https://support.apple.com/guide/iphone/control-iphone-with-an-external-keyboard-ipha4375873f/17.0/ios/17.0">documentation provided by Apple</a>.</p>
+</section>
+</section>
+</section>
+
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+            <a href="overview.html" title="The overall setup and workflow"
+               class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+               rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span
+                      class="md-footer-nav__direction"> "Previous" </span> The overall setup and workflow </span>
+              </div>
+            </a>
+          
+          
+            <a href="usage.html" title="Usage"
+               class="md-flex md-footer-nav__link md-footer-nav__link--next"
+               rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
+                class="md-flex__ellipsis"> <span
+                class="md-footer-nav__direction"> "Next" </span> Usage </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink"><i
+                class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+          <div class="md-footer-copyright__highlight">
+              &#169; Copyright 2024, Caltech Library.
+              
+          </div>
+            Last updated on
+              Jul 04, 2024.
+            <br/>
+            Created using
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
+             and
+            <a href="https://github.com/bashtage/sphinx-material/">Material for
+              Sphinx</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>

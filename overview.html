@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="blue-grey">
+  <script src="_static/javascripts/modernizr.js"></script>
+  
+  
+  
+    <title>The overall setup and workflow &#8212; Popstar</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=83e35b93" />
+    <link rel="stylesheet" type="text/css" href="_static/material.css?v=79c92029" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=557b54f6" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation and configuration" href="installation.html" />
+    <link rel="prev" title="Popstar: phone-based processing software for archives" href="index.html" />
+  
+   
+
+  </head>
+  <body dir=ltr
+        data-md-color-primary=deep-orange data-md-color-accent=teal>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#overview" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="index.html" title="Popstar"
+           class="md-header-nav__button md-logo">
+          
+            &nbsp;
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          <span class="md-header-nav__topic">Popstar</span>
+          <span class="md-header-nav__topic"> The overall setup and workflow </span>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+        
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="search.html" method="get" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder=""Search""
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            <a href="https://github.com/caltechlibrary/popstar/" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    popstar
+  </div>
+</a>
+          </div>
+        </div>
+      
+      
+    </div>
+  </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    
+  <nav class="md-tabs" data-md-component="tabs">
+    <div class="md-tabs__inner md-grid">
+      <ul class="md-tabs__list">
+          <li class="md-tabs__item"><a href="index.html" class="md-tabs__link">Home</a></li>
+      </ul>
+    </div>
+  </nav>
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="index.html" title="Popstar" class="md-nav__button md-logo">
+      
+        <img src="_static/" alt=" logo" width="48" height="48">
+      
+    </a>
+    <a href="index.html"
+       title="Popstar">Popstar</a>
+  </label>
+    <div class="md-nav__source">
+      <a href="https://github.com/caltechlibrary/popstar/" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    popstar
+  </div>
+</a>
+    </div>
+  
+  
+
+  
+  <ul class="md-nav__list">
+    <li class="md-nav__item">
+    
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <label class="md-nav__link md-nav__link--active" for="__toc"> The overall setup and workflow </label>
+    
+      <a href="#" class="md-nav__link md-nav__link--active">The overall setup and workflow</a>
+      
+        
+<nav class="md-nav md-nav--secondary">
+  <ul class="md-nav__list" data-md-scrollfix="">
+  </ul>
+</nav>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="#example-archiving-project" class="md-nav__link">Example archiving project</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#example-workflow-using-popstar" class="md-nav__link">Example workflow using Popstar</a>
+      
+    
+    </li></ul>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="installation.html" class="md-nav__link">Installation and configuration</a>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="installation.html#popstar-software-installation" class="md-nav__link">Popstar software installation</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="installation.html#optional-external-keypad-configuration" class="md-nav__link">(Optional) External keypad configuration</a>
+      
+    
+    </li></ul>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="usage.html" class="md-nav__link">Usage</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="colophon.html" class="md-nav__link">Colophon</a>
+      
+    
+    </li>
+  </ul>
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+  <ul class="md-nav__list" data-md-scrollfix="">
+  </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <section id="the-overall-setup-and-workflow">
+<h1 id="overview--page-root">The overall setup and workflow<a class="headerlink" href="#overview--page-root" title="Link to this heading">¶</a></h1>
+<p>One of the essential tasks for staff at the Caltech Library Archives is to select and scan paper materials that are in bankers boxes, and put them into archival boxes. A typical collection can consist of tens of thousands of pages of documents. The huge number of pages to be handled means that we need an efficient, simple, and fast workflow. Popstar (PhOne-based Processing SofTware for ARchives) is an experiment in creating such a workflow using commodity devices and software services.</p>
+<section id="example-archiving-project">
+<h2 id="example-archiving-project">Example archiving project<a class="headerlink" href="#example-archiving-project" title="Link to this heading">¶</a></h2>
+<p>The Caltech Archives recently accessioned materials from <a class="reference external" href="https://en.wikipedia.org/wiki/Robert_H._Grubbs">Robert H. Grubbs</a>. Grubbs was a Caltech faculty member and Nobel Prize winner in Chemistry. The hybrid collection consists of over 100 carton-sized boxes of papers and thousands of digital files and emails.</p>
+<figure>
+<img align="middle" class="shadow" src="_static/media/bankers-boxes.jpeg" width="70%"/>
+<figcaption>A small portion of the Robert H. Grubbs collection.</figcaption>
+</figure>
+<p>We cannot keep all of the materials, so Caltech Archives personnel evaluate the materials to determine which ones should be kept and digitized. The physical materials that are kept are placed in archival boxes such as the ones shown below.</p>
+<figure>
+<img align="middle" class="shadow" src="_static/media/archival-boxes.jpeg" width="70%"/>
+<figcaption>Archival boxes used to store selected materials from the collection.</figcaption>
+</figure>
+<p>Inside the archival boxes, paper documents are organized using manilla folders.</p>
+<figure>
+<img align="middle" class="shadow" src="_static/media/folders-inside-boxes.jpeg" width="70%"/>
+<figcaption>Archival boxes used to store selected materials from the collection. In the Popstar workflow, an archival box is referred to as "destination box" and a folder within the box is referred to as a "destination folder".</figcaption>
+</figure>
+</section>
+<section id="example-workflow-using-popstar">
+<h2 id="example-workflow-using-popstar">Example workflow using Popstar<a class="headerlink" href="#example-workflow-using-popstar" title="Link to this heading">¶</a></h2>
+<p>Our experiment in simple, rapid scanning used a height-adjustable table (for the comfort of staff doing the work) and a large ring light positioned above the table. The ring light has a phone mount in the middle where we place an Apple iPhone with the camera facing the table surface.</p>
+<figure>
+<img align="middle" class="shadow" src="_static/media/table-and-light.jpeg" width="70%"/>
+<figcaption>Our extremely basic scanning setup.</figcaption>
+</figure>
+<p>We placed a gray felt pad on top of the table surface; this serves as a mat for placing document pages. The felt pad makes the surface less slippery for the papers, and also provides a more-or-less neutral background surrounding document pages so that borders may be more easily detected by later image processing steps. We also placed an “L” shape in one corner of the gray felt mat using velcro-backed cloth to provide a placement guide for document pages.</p>
+<figure>
+<img align="middle" class="shadow" src="_static/media/example-document-scan.jpeg" width="70%"/>
+<figcaption>Example of an actual document image taken by our workflow software. Document pages are placed on a gray mat that is itself placed on the table shown in the previous photo.</figcaption>
+</figure>
+<p>The scanning workflow has a modular design. The overall workflow is divided into a few separate actions:</p>
+<ol class="arabic simple">
+<li><p>Start a new destination box (one of the gray archival boxes)</p></li>
+<li><p>Start a new destination folder (a manilla folder) within the current destination box</p></li>
+<li><p>Take photos of documents to file into the current destination folder</p></li>
+<li><p>Go to step 1</p></li>
+</ol>
+<p>Steps 1–3 are each implemented as their own separate <a class="reference external" href="https://support.apple.com/guide/shortcuts/welcome/ios"><em>Shortcut</em></a> as described in the <a class="reference internal" href="#software.md"><span class="xref myst">Software</span></a> section. The first two steps above use the camera on the phone to take a picture of box or folder labels rather than document pages; the software uses optical character recognition (OCR) to transcribe any text it finds in the image and then uses the extracted text to create a folder hierarchy for the destination box and folder within the box. The third step currently does not apply OCR to document pages, because we decided it would be better to leave that to a post-processing workflow. Instead, the third step only saves images of document pages.</p>
+</section>
+</section>
+
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+            <a href="index.html" title="Popstar: phone-based processing software for archives"
+               class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+               rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span
+                      class="md-footer-nav__direction"> "Previous" </span>  Popstar: <u>p</u>h<u>o</u>ne-based <u>p</u>rocessing <u>s</u>of<u>t</u>ware for <u>ar</u>chives </span>
+              </div>
+            </a>
+          
+          
+            <a href="installation.html" title="Installation and configuration"
+               class="md-flex md-footer-nav__link md-footer-nav__link--next"
+               rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
+                class="md-flex__ellipsis"> <span
+                class="md-footer-nav__direction"> "Next" </span> Installation and configuration </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink"><i
+                class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+          <div class="md-footer-copyright__highlight">
+              &#169; Copyright 2024, Caltech Library.
+              
+          </div>
+            Last updated on
+              Jul 04, 2024.
+            <br/>
+            Created using
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
+             and
+            <a href="https://github.com/bashtage/sphinx-material/">Material for
+              Sphinx</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>
