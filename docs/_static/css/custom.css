@@ -195,6 +195,9 @@ img.shadowed.iphone-screenshot {
   -moz-border-radius: 20px;
 }
 
+img.vertically-centered {
+  vertical-align: middle;
+}
 
 .md-typeset td,
 .md-typeset th {
