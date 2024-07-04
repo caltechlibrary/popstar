@@ -1,8 +1,8 @@
-#  <img width="5%" align="left" class="vertically-centered" alt="Popstar icon. Artwork by Mary Quilao from the Noun Project." src="https://github.com/caltechlibrary/popstar/raw/main/.graphics/popstar-icon.png"> Popstar: PhOne-based Processing SofTware for ARchives
+#  <img width="5%" align="left" class="vertically-centered" alt="Popstar icon. Artwork by Mary Quilao from the Noun Project." src="https://github.com/caltechlibrary/popstar/raw/main/.graphics/popstar-icon.png"> Popstar: <u>p</u>h<u>o</u>ne-based <u>p</u>rocessing <u>s</u>of<u>t</u>ware for <u>ar</u>chives
 
 <div style="margin-top: -0.5em">
 
-<img class="shadowed" align="right" src="_static/media/bankers-boxes.jpeg" width="25%"> For many years, the [Caltech Library Archives](https://library.caltech.edu/archives/home) has been accessioning materials from selected retired faculty members. The traditional approach to digitizing physical materials (e.g., correspondences, notebooks, manuscripts written on typewriters, etc.) has involved the use of scanning tables and manual file organization – which are slow and laborious processes. However, computing technologies have improved so much in recent years that we decided to experiment with workflows that make use of modern devices and software tools. Popstar (_**P**h**o**ne-based **p**rocessing **s**of**t**ware for **ar**chives_) is one of the outcomes.
+<img class="shadowed" align="right" src="_static/media/bankers-boxes.jpeg" width="25%"> For many years, the [Caltech Library Archives](https://library.caltech.edu/archives/home) has been accessioning materials from selected retired faculty members. The traditional approach to digitizing physical materials (e.g., correspondences, notebooks, manuscripts written on typewriters, etc.) has involved the use of scanning tables and manual file organization – which are slow and laborious processes. However, computing technologies have improved so much in recent years that we decided to experiment with workflows that make use of modern devices and software tools. Popstar (_**p**h**o**ne-based **p**rocessing **s**of**t**ware for **ar**chives_) is one of the outcomes.
 
 </div>
 
