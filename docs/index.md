@@ -14,9 +14,8 @@ Popstar is based on Apple iPhone and macOS software and services. Popstar consis
 ---
 maxdepth: 2
 ---
-workflow.md
-software.md
-keypad.md
-glossary.md
+overview.md
+installation.md
+usage.md
 colophon.md
 ```
