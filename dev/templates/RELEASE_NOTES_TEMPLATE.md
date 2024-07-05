@@ -1,4 +1,4 @@
-## Changes in this release
+## Changes in this release <!-- markdownlint-disable-line MD041 -->
 
 <!-- Replace this comment with release notes -->
 
