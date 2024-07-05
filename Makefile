@@ -268,8 +268,7 @@ clean: clean-release
 	@echo 🧼 Cleaned! 🧽
 
 clean-release:;
-	rm -rf codemeta.json.bak README.md.bak sample-workflow.yml.bak
-	rm -f $(rel_notes)
+	rm -f *.bak $(rel_notes)
 
 
 # Miscellaneous directives ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
