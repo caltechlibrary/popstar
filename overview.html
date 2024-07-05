@@ -49,7 +49,7 @@
     <title>The overall setup and workflow &#8212; Popstar</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=83e35b93" />
     <link rel="stylesheet" type="text/css" href="_static/material.css?v=79c92029" />
-    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=557b54f6" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=2473d72b" />
     <script src="_static/documentation_options.js?v=5929fcd5"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -220,7 +220,7 @@
     <li class="md-nav__item">
     
     
-      <a href="#example-workflow-using-popstar" class="md-nav__link">Example workflow using Popstar</a>
+      <a href="#example-popstar-scanning-setup" class="md-nav__link">Example Popstar scanning setup</a>
       
     
     </li></ul>
@@ -234,14 +234,21 @@
     <li class="md-nav__item">
     
     
-      <a href="installation.html#popstar-software-installation" class="md-nav__link">Popstar software installation</a>
+      <a href="installation.html#software-installation" class="md-nav__link">Software installation</a>
       
     
     </li>
     <li class="md-nav__item">
     
     
-      <a href="installation.html#optional-external-keypad-configuration" class="md-nav__link">(Optional) External keypad configuration</a>
+      <a href="installation.html#software-configuration" class="md-nav__link">Software configuration</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="installation.html#optional-hardware-keypad-configuration" class="md-nav__link">(Optional) Hardware keypad configuration</a>
       
     
     </li></ul>
@@ -290,40 +297,42 @@
 <h2 id="example-archiving-project">Example archiving project<a class="headerlink" href="#example-archiving-project" title="Link to this heading">¶</a></h2>
 <p>The Caltech Archives recently accessioned materials from <a class="reference external" href="https://en.wikipedia.org/wiki/Robert_H._Grubbs">Robert H. Grubbs</a>. Grubbs was a Caltech faculty member and Nobel Prize winner in Chemistry. The hybrid collection consists of over 100 carton-sized boxes of papers and thousands of digital files and emails.</p>
 <figure>
-<img align="middle" class="shadow" src="_static/media/bankers-boxes.jpeg" width="70%"/>
+<img align="middle" class="shadow" src="_static/media/bankers-boxes.jpeg" width="400em"/>
 <figcaption>A small portion of the Robert H. Grubbs collection.</figcaption>
 </figure>
 <p>We cannot keep all of the materials, so Caltech Archives personnel evaluate the materials to determine which ones should be kept and digitized. The physical materials that are kept are placed in archival boxes such as the ones shown below.</p>
 <figure>
-<img align="middle" class="shadow" src="_static/media/archival-boxes.jpeg" width="70%"/>
+<img align="middle" class="shadow" src="_static/media/archival-boxes.jpeg" width="400em"/>
 <figcaption>Archival boxes used to store selected materials from the collection.</figcaption>
 </figure>
-<p>Inside the archival boxes, paper documents are organized using manilla folders.</p>
+<p>Inside the archival boxes, paper documents are organized using manila folders.</p>
 <figure>
-<img align="middle" class="shadow" src="_static/media/folders-inside-boxes.jpeg" width="70%"/>
+<img align="middle" class="shadow" src="_static/media/folders-inside-boxes.jpeg" width="400em"/>
 <figcaption>Archival boxes used to store selected materials from the collection. In the Popstar workflow, an archival box is referred to as "destination box" and a folder within the box is referred to as a "destination folder".</figcaption>
 </figure>
 </section>
-<section id="example-workflow-using-popstar">
-<h2 id="example-workflow-using-popstar">Example workflow using Popstar<a class="headerlink" href="#example-workflow-using-popstar" title="Link to this heading">¶</a></h2>
-<p>Our experiment in simple, rapid scanning used a height-adjustable table (for the comfort of staff doing the work) and a large ring light positioned above the table. The ring light has a phone mount in the middle where we place an Apple iPhone with the camera facing the table surface.</p>
+<section id="example-popstar-scanning-setup">
+<h2 id="example-popstar-scanning-setup">Example Popstar scanning setup<a class="headerlink" href="#example-popstar-scanning-setup" title="Link to this heading">¶</a></h2>
+<p>Our experiment in simple, rapid scanning used a height-adjustable table (for the comfort of staff doing the work) and a large ring light positioned above the table. The ring light has a phone mount in the middle where we place an Apple iPhone with the camera facing the table surface. On this iPhone, we install the Popstar software as described in the <a class="reference internal" href="installation.html"><span class="std std-doc">Installation and configuration</span></a> section of this document.</p>
 <figure>
-<img align="middle" class="shadow" src="_static/media/table-and-light.jpeg" width="70%"/>
+<img align="middle" class="shadow" src="_static/media/table-and-light.jpeg" width="400em"/>
 <figcaption>Our extremely basic scanning setup.</figcaption>
 </figure>
-<p>We placed a gray felt pad on top of the table surface; this serves as a mat for placing document pages. The felt pad makes the surface less slippery for the papers, and also provides a more-or-less neutral background surrounding document pages so that borders may be more easily detected by later image processing steps. We also placed an “L” shape in one corner of the gray felt mat using velcro-backed cloth to provide a placement guide for document pages.</p>
+<p>We placed a gray felt pad on top of the table surface; this serves as a mat for placing document pages. The felt pad makes the surface less slippery for the papers, and also provides a more-or-less neutral background surrounding document pages so that borders may be more easily detected by later image processing steps. We also placed an “L” shape in one corner of the gray felt mat using Velcro-backed cloth to provide a placement guide for document pages.</p>
 <figure>
-<img align="middle" class="shadow" src="_static/media/example-document-scan.jpeg" width="70%"/>
+<img align="middle" class="shadow" src="_static/media/example-document-scan.jpeg" width="400em"/>
 <figcaption>Example of an actual document image taken by our workflow software. Document pages are placed on a gray mat that is itself placed on the table shown in the previous photo.</figcaption>
 </figure>
-<p>The scanning workflow has a modular design. The overall workflow is divided into a few separate actions:</p>
+<p>Scanning proceeds in a straightforward fashion:</p>
 <ol class="arabic simple">
-<li><p>Start a new destination box (one of the gray archival boxes)</p></li>
-<li><p>Start a new destination folder (a manilla folder) within the current destination box</p></li>
-<li><p>Take photos of documents to file into the current destination folder</p></li>
-<li><p>Go to step 1</p></li>
+<li><p>Initialize a new project by running the Shortcut <em>Initialize Popstar for new project</em>.</p></li>
+<li><p>To start a new destination box (one of the gray archival boxes), we place a box label on the imaging surface (the gray felt pad mentioned above), then trigger the Popstar step <em>Start new destination box</em>. This step extracts the text written on the box label.</p></li>
+<li><p>Next, we label a destination folder (a manila folder to be placed in the current destination box) and position it on the imaging surface, then trigger the Popstar step <em>Start new destination folder</em>. This step extracts the text written on the folder label.</p></li>
+<li><p>Next, it’s time to scan documents. For each document page that belongs in the current destination folder, we run the Popstar step <em>Take photo of document page</em>.</p></li>
+<li><p>Go back to step 3 when it’s time to start a new destination folder.</p></li>
+<li><p>Go back to step 2 when it’s time to start a new destination box.</p></li>
+<li><p>Go back to step 1 when it’s time to start a new scanning project.</p></li>
 </ol>
-<p>Steps 1–3 are each implemented as their own separate <a class="reference external" href="https://support.apple.com/guide/shortcuts/welcome/ios"><em>Shortcut</em></a> as described in the <a class="reference internal" href="#software.md"><span class="xref myst">Software</span></a> section. The first two steps above use the camera on the phone to take a picture of box or folder labels rather than document pages; the software uses optical character recognition (OCR) to transcribe any text it finds in the image and then uses the extracted text to create a folder hierarchy for the destination box and folder within the box. The third step currently does not apply OCR to document pages, because we decided it would be better to leave that to a post-processing workflow. Instead, the third step only saves images of document pages.</p>
 </section>
 </section>
 

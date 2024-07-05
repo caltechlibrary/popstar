@@ -115,7 +115,7 @@ figure {
 }
 
 figure img {
-  max-width: 85% !important;
+  max-width: 100% !important;
 }
 
 figure img.border {
@@ -204,15 +204,16 @@ dt {
 
 img.shadowed {
   filter: drop-shadow(0.25em 0.35em 0.4em #888);
+  margin-top: 1em;
   margin-bottom: 1em;
   margin-right: 1em;
 }
 
 img.shadowed.iphone-screenshot {
   background: transparent;
-  border-radius: 25px;
-  -webkit-border-radius: 25px;
-  -moz-border-radius: 20px;
+  border-radius: 17px;
+  -webkit-border-radius: 17px;
+  -moz-border-radius: 17px;
 }
 
 img.vertically-centered {

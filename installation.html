@@ -49,7 +49,7 @@
     <title>Installation and configuration &#8212; Popstar</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=83e35b93" />
     <link rel="stylesheet" type="text/css" href="_static/material.css?v=79c92029" />
-    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=557b54f6" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=2473d72b" />
     <script src="_static/documentation_options.js?v=5929fcd5"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -211,7 +211,7 @@
     <li class="md-nav__item">
     
     
-      <a href="overview.html#example-workflow-using-popstar" class="md-nav__link">Example workflow using Popstar</a>
+      <a href="overview.html#example-popstar-scanning-setup" class="md-nav__link">Example Popstar scanning setup</a>
       
     
     </li></ul>
@@ -234,14 +234,21 @@
     <li class="md-nav__item">
     
     
-      <a href="#popstar-software-installation" class="md-nav__link">Popstar software installation</a>
+      <a href="#software-installation" class="md-nav__link">Software installation</a>
       
     
     </li>
     <li class="md-nav__item">
     
     
-      <a href="#optional-external-keypad-configuration" class="md-nav__link">(Optional) External keypad configuration</a>
+      <a href="#software-configuration" class="md-nav__link">Software configuration</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#optional-hardware-keypad-configuration" class="md-nav__link">(Optional) Hardware keypad configuration</a>
       
     
     </li></ul>
@@ -286,8 +293,8 @@
   <section id="installation-and-configuration">
 <h1 id="installation--page-root">Installation and configuration<a class="headerlink" href="#installation--page-root" title="Link to this heading">¶</a></h1>
 <p>The overall workflow is divided into a number of separate Shortcuts. Some of the Shortcuts – the primary actions in the scanning workflow – are meant to be invoked directly by the user; other Shortcuts act as helpers and are not meant to be invoked by users directly. All of them need to be installed on an iPhone for Popstar to function.</p>
-<section id="popstar-software-installation">
-<h2 id="popstar-software-installation">Popstar software installation<a class="headerlink" href="#popstar-software-installation" title="Link to this heading">¶</a></h2>
+<section id="software-installation">
+<h2 id="software-installation">Software installation<a class="headerlink" href="#software-installation" title="Link to this heading">¶</a></h2>
 <p>There are two alternative approaches for installing Popstar, with variations possible within those general approaches. In addition, Popstar requires a certain third-party application to be installed as well.</p>
 <p>Depending on your needs and preferences, the Popstar software can be installed directly on an iPhone, or it can be installed first on a MacOS computer or an iPad, and then taking advantage of the Apple’s automatic synchronization of Shortcuts between devices that share the same Apple account ID. The latter approach only works if the account on the iPhone is tied to the same account on the Mac where the shortcuts are imported; however, editing Shortcuts is more convenient to do on a Mac than on an iPhone, so this approach is preferable for developers.</p>
 <section id="prerequisite-software">
@@ -308,41 +315,127 @@
 </ol>
 </section>
 </section>
-<section id="optional-external-keypad-configuration">
-<h2 id="optional-external-keypad-configuration">(Optional) External keypad configuration<a class="headerlink" href="#optional-external-keypad-configuration" title="Link to this heading">¶</a></h2>
-<p>The Shortcuts app provides software buttons to run shortcuts, and in fact, is all that’s really needed to run the Popstar workflow. However, reaching the buttons is difficult when the phone is mounted over a work surface. For this reason, we have been using a wireless button device to trigger the Popstar workflow steps.</p>
+<section id="software-configuration">
+<h2 id="software-configuration">Software configuration<a class="headerlink" href="#software-configuration" title="Link to this heading">¶</a></h2>
+<p>Once the Popstar Shortcuts are installed on an iPhone, the following configuration steps need to be performed.</p>
+<section id="make-sure-icloud-drive-is-available-in-the-user-account-on-the-iphone">
+<h3 id="make-sure-icloud-drive-is-available-in-the-user-account-on-the-iphone">Make sure iCloud Drive is available in the user account on the iPhone<a class="headerlink" href="#make-sure-icloud-drive-is-available-in-the-user-account-on-the-iphone" title="Link to this heading">¶</a></h3>
+<p>A paid iCloud Drive subscription may not necessary, depending on how much scanning needs to be performed, but Popstar currently creates all its files in the user’s iCloud space, so a free iCloud Drive account must at least be enabled on the phone. To check, open the <em>Files</em> app on the iPhone and check that iCloud Drive is enabled, and that you can open the iCloud Drive folder and create subfolders within it.</p>
+<figure>
+<img class="shadowed iphone-screenshot" src="_static/media/files-icloud.png" width="220em"/>
+<figcaption>Open the iOS <em>Files</em> app on the phone, check that iCloud Drive is available, and also tap on iCloud Drive and make sure you can add content inside it.</figcaption>
+</figure>
+</section>
+<section id="allow-popstar-shortcuts-to-perform-actions">
+<h3 id="allow-popstar-shortcuts-to-perform-actions">Allow Popstar Shortcuts to perform actions<a class="headerlink" href="#allow-popstar-shortcuts-to-perform-actions" title="Link to this heading">¶</a></h3>
+<p>When the Shortcuts are first run, the iOS security mechanisms display alert dialogs asking the user whether the Shortcut should be allowed to perform its actions. Make sure to select the <em>Always allow</em> option when those dialogs are shown. This will avoid iOS asking for permission every time. The best way to handle this is to perform Step 3 and then run all of the Popstar workflow steps; this will cause iOS to ask about everything, and if you consistently select the <em>Always allow</em> option in every dialog, eventually all the permissions will be granted and iOS won’t ask again.</p>
+</section>
+<section id="configure-a-new-project">
+<h3 id="configure-a-new-project">Configure a new project<a class="headerlink" href="#configure-a-new-project" title="Link to this heading">¶</a></h3>
+<p>At the beginning of a new scanning project, run the Shortcut titled <em>Initialize Popstar for new project</em>. It will ask a few questions and provide some instructions for steps you need to perform. The following screenshots illustrate what happens.</p>
+<figure>
+<img class="shadowed iphone-screenshot" src="_static/media/initialization-1-project-name.png" width="220em"/>
+<figcaption>When the Shortcut <em>Initialize Popstar for new project</em> is run, it begins by asking for a name for the scanning project. This name is used to create a folder in the account holder's iCloud Drive.</figcaption>
+</figure>
+<figure>
+<img class="shadowed iphone-screenshot" src="_static/media/initialization-2-open-camera.png" width="220em"/>
+<figcaption>Next, it will open the iOS Camera app and ask you to take a picture.</figcaption>
+</figure>
+<figure>
+<img class="shadowed iphone-screenshot" src="_static/media/initialization-3-camera-app.png" width="220em"/>
+<figcaption>This step is only done so that you can adjust the camera and make sure it is properly focused. (This is especially important when the phone is mounted above a work surface). The picture that you take must be saved by tapping on "Use Photo", so that you can exit the Camera app, but the picture is not actually used or saved by Popstar.</figcaption>
+</figure>
+<figure>
+<img class="shadowed iphone-screenshot" src="_static/media/initialization-4-final-dialog.png" width="220em"/>
+<figcaption>Once the initialization workflow completes, it finishes by starting the standard iOS Files app.</figcaption>
+</figure>
+<figure>
+<img class="shadowed iphone-screenshot" src="_static/media/initialization-5-files-app.png" width="220em"/>
+<figcaption>When the Files app open, you can check that the project folder has been created properly in iCloud Drive.</figcaption>
+</figure>
+<p>This initialization workflow only needs to be performed once at the beginning of a given scanning project, regardless of the number of boxes, folders, or documents to be scanned.</p>
+</section>
+</section>
+<section id="optional-hardware-keypad-configuration">
+<h2 id="optional-hardware-keypad-configuration">(Optional) Hardware keypad configuration<a class="headerlink" href="#optional-hardware-keypad-configuration" title="Link to this heading">¶</a></h2>
+<p>The Shortcuts app on an iPhone provides an interface featuring large software “buttons” to run shortcuts, and in fact, is all that’s really needed to run the Popstar workflow. However, tapping the buttons is difficult when the phone is mounted over a work surface inside a ring light. For this reason, we have been using a wireless button device to trigger the Popstar workflow steps. The device can be conveniently placed on the work table near where scanning is taking place, making it easy for an archivist to reach while they are working on digitizing materials.</p>
 <section id="device-choice">
 <h3 id="device-choice">Device choice<a class="headerlink" href="#device-choice" title="Link to this heading">¶</a></h3>
+<p>One approach to setting up hardware buttons for triggering workflows is to use a normal external keyboard with an iPhone. For example, an <a class="reference external" href="https://en.wikipedia.org/wiki/Apple_keyboards">Apple Magic Keyboard</a> would work, and would offer the best compatibility with the iOS environment. The main disadvantages is the desk space taken up by a full keyboard and the potential for users to hit the wrong key. We chose a smaller device for these reasons.</p>
 <p>Our current device is a <a class="reference external" href="https://web.archive.org/web/20240426133138/https://store.huion.com/products/huion-keydial-mini">HUION Keydial Mini Bluetooth Programmable Keypad</a> bought in early April 2024 for approximately US $60.</p>
 <figure>
-<img align="middle" class="shadowed" src="_static/media/huion-keypad.jpeg" width="40%"/>
+<img align="middle" class="shadowed" src="_static/media/huion-keypad.jpeg" width="300em"/>
 <figcaption>Our HUION Keydial Mini Bluetooth Programmable Keypad, with custom labels that we printed, skillfully cut, and stuck on the keys we use for the Popstar workflow.</figcaption>
 </figure>
-<p>There are many similar devices available via online retailers. Many others would likely do; the main criteria for a suitable device are that (1) it can pair with an iPhone, and (2) the buttons send keypress events that can be used as triggers for Shortcuts in the iOS accessibility preferences. (Not all bluetooth external keypad devices meet those criteria. This device by HUION was one of three tried; two worked suitably, and this one was chosen because it had a more convenient button layout.)</p>
-<p>We are currently using only 3 of the buttons, for the following actions:</p>
+<p>There are many similar devices available. The main requirements for a suitable device are the following:</p>
 <ol class="arabic simple">
-<li><p>Start a new destination box</p></li>
-<li><p>Start a new destination folder within the current destination box</p></li>
-<li><p>Take a photo of a document page to file in the current destination folder</p></li>
+<li><p><a class="shadowed iphone-screenshot reference internal" href="_images/two-spaces-needed.jpeg"><img alt="_images/two-spaces-needed.jpeg" class="shadowed iphone-screenshot align-right" src="_images/two-spaces-needed.jpeg" style="width: 10em;"/></a> It can be connected to an iPhone <em>somehow</em>, whether wirelessly (e.g., via Bluetooth) or wired cable.</p></li>
+<li><p>There are at least three buttons that can send individual keyboard events that the iPhone will interpret as different keys on a keyboard.</p></li>
+<li><p>At least one other button on the keyboard sends the equivalent of the <em>space</em> character on a keyboard. The reason for this requirement is that when assigning keyboard keys to trigger Shortcuts, the iOS interface for assigning keys requires typing two spaces in a row. (See the screenshot at right →)</p></li>
 </ol>
-<p>There is an additional step, to initialize Popstar; this step must be performed once at the beginning of a new archiving project and requires typing text, so it is more convenient to do with the phone in hand and consequently does not need a hardware button assigned to it.</p>
+<p>Not all Bluetooth external keypad devices meet those criteria. The device by HUION was one of three we tried; two of them could be paired with the iPhone and send keyboard characters, but of those two, only the HUION had a key that sent a <em>space</em> character. However, many similar devices can be found in online retailers, and we suspect others would likely also work.</p>
 </section>
 <section id="device-setup">
 <h3 id="device-setup">Device Setup<a class="headerlink" href="#device-setup" title="Link to this heading">¶</a></h3>
-<p>Once the Shortcuts for the workflow are installed on an iPhone as described in a <a class="reference internal" href="#popstar-software-installation"><span class="xref myst">section above</span></a>, some additional and nonobvious steps are required to enable a device such as the HUION keypad to trigger Shortcuts on demand.</p>
-<p>On iPhones running iOS 17 or earlier, the only method we have found is to set up the keypad using the iOS <a class="reference external" href="https://web.archive.org/web/20240208094118/https://support.apple.com/guide/iphone/turn-on-accessibility-features-for-setup-iph2f623a095/17.0/ios/17.0">Accessibility</a> features. The following is the procedure we use:</p>
+<p>To enable a device such as the HUION keypad to trigger Shortcuts on iPhones, the only method we have found is to set up the keypad using the iOS <a class="reference external" href="https://web.archive.org/web/20240208094118/https://support.apple.com/guide/iphone/turn-on-accessibility-features-for-setup-iph2f623a095/17.0/ios/17.0">Accessibility</a> features. We currently assign only 3 of the buttons, for the following actions: start a new destination box, start a new destination folder within the current destination box, and take a photo of a document page and save it the current destination folder.</p>
+<p>The following is the procedure we use to assign buttons to Shortcuts:</p>
+<ol class="arabic">
+<li><p>On the phone, go to the iOS <em>Settings</em> app.</p></li>
+<li><p>Tap on <em>Accessibility</em>.</p>
+<figure>
+<img class="shadowed iphone-screenshot" src="_static/media/iphone-settings-accessibility-light.png" width="220em"/>
+<figcaption>Select the <em>Accessibility</em> item in the iOS Settings app.</figcaption>
+</figure>
+</li>
+<li><p>In the <em>Accessibility</em> panel, scroll down the list to the section titled “physical and motor” and tap on <em>Keyboards</em>.</p>
+<figure>
+<img class="shadowed iphone-screenshot" src="_static/media/iphone-settings-physical-light.png" width="220em"/>
+<figcaption>Select the <em>Keyboards</em> item in the <em>Accessibility</em> panel.</figcaption>
+</figure>
+</li>
+<li><p>Tap on <em>Full Keyboard Access</em>, located at the top of the _Keyboards_panel.</p>
+<figure>
+<img class="shadowed iphone-screenshot" src="_static/media/iphone-settings-keyboards-light.png" width="220em"/>
+<figcaption>Select the <em>Full Keyboard Access</em> item in the <em>Accessibility</em> panel.</figcaption>
+</figure>
+</li>
+<li><p>Turn on <em>Full Keyboard Access</em> via the toggle.</p>
+<figure>
+<img class="shadowed iphone-screenshot" src="_static/media/iphone-settings-keyboard-toggle-light.png" width="220em"/>
+<figcaption>Switch on the <em>Full Keyboard Access</em> toggle in the <em>Full Keyboard Access</em> panel.</figcaption>
+</figure>
+</li>
+<li><p>Tap on <em>Commands</em> in the middle of the same screen.</p>
+<figure>
+<img class="shadowed iphone-screenshot" src="_static/media/iphone-settings-keyboard-commands-light.png" width="220em"/>
+<figcaption>Select the <em>Commands</em> item in the <em>Full Keyboard Access</em> panel.</figcaption>
+</figure>
+</li>
+<li><p>Scroll the (long) list of items until you find the section titled “Shortcuts”.</p>
+<figure>
+<img class="shadowed iphone-screenshot" src="_static/media/iphone-keyboard-shortcuts-section-light.png" width="220em"/>
+<figcaption>Scroll down to the section for <em>Shortcuts</em> in the <em>Commands</em> panel.</figcaption>
+</figure>
+</li>
+<li><p>Scroll the list of Shortcuts and look for the 3 main Popstar workflow shortcut names: “Start new destination box”, “Start new destination folder”, and “Take photo of document page”.</p>
+<figure>
+<img class="shadowed iphone-screenshot" src="_static/media/popstar-shortcuts-in-commands-list-light.png" width="220em"/>
+<figcaption>Scroll down to the section for <em>Shortcuts</em> in the <em>Commands</em> panel.</figcaption>
+</figure>
+</li>
+<li><p>Assign keys of your choosing to the 3 main shortcuts, one after the other. Follow this procedure:</p>
 <ol class="arabic simple">
-<li><p>On the phone, go to the iOS <em>Settings</em> app</p></li>
-<li><p>Tap on <em>Accessibility</em></p></li>
-<li><p>Scroll down the list to the section titled “physical and motor” and tap on <em>Keyboards</em></p></li>
-<li><p>Tap on <em>Full Keyboard Access</em></p></li>
-<li><p>Turn on <em>Full Keyboard Access</em> via the toggle</p></li>
-<li><p>Tap on <em>Commands</em> in the middle of the same screen</p></li>
-<li><p>Scroll the (long) list of items until you find the section titled “Shortcuts”</p></li>
-<li><p>Look for the 3 main workflow shortcut names: “Start new destination box”, “Start new destination folder”, and “Take photo of document page”</p></li>
-<li><p>Assign keys of your choosing to the 3 shortcuts</p></li>
+<li><p>Tap on the title of the Shortcut in the list</p></li>
+<li><p>On the separate hardware keyboard device:</p>
+<ol class="arabic simple">
+<li><p>Tap on the key that should be assigned to the shortcut</p></li>
+<li><p>Double-tap the space key.</p></li>
 </ol>
-<p>More information about using external keyboards with iPhones can be found in <a class="reference external" href="https://support.apple.com/guide/iphone/control-iphone-with-an-external-keyboard-ipha4375873f/17.0/ios/17.0">documentation provided by Apple</a>.</p>
+</li>
+</ol>
+</li>
+</ol>
+<p>Note that we do not assign a key to the Shortcut named <em>Initialize Popstar for new project</em>. The initialization step is only performed once at the beginning of a new archiving project and requires typing text as well as taking a picture with the phone, so it is more convenient to do with the phone in hand. Consequently, we did not find it useful to assign a hardware button to it.</p>
 </section>
 </section>
 </section>

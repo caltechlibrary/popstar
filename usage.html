@@ -49,7 +49,7 @@
     <title>Usage &#8212; Popstar</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=83e35b93" />
     <link rel="stylesheet" type="text/css" href="_static/material.css?v=79c92029" />
-    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=557b54f6" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=2473d72b" />
     <script src="_static/documentation_options.js?v=5929fcd5"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -211,7 +211,7 @@
     <li class="md-nav__item">
     
     
-      <a href="overview.html#example-workflow-using-popstar" class="md-nav__link">Example workflow using Popstar</a>
+      <a href="overview.html#example-popstar-scanning-setup" class="md-nav__link">Example Popstar scanning setup</a>
       
     
     </li></ul>
@@ -225,14 +225,21 @@
     <li class="md-nav__item">
     
     
-      <a href="installation.html#popstar-software-installation" class="md-nav__link">Popstar software installation</a>
+      <a href="installation.html#software-installation" class="md-nav__link">Software installation</a>
       
     
     </li>
     <li class="md-nav__item">
     
     
-      <a href="installation.html#optional-external-keypad-configuration" class="md-nav__link">(Optional) External keypad configuration</a>
+      <a href="installation.html#software-configuration" class="md-nav__link">Software configuration</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="installation.html#optional-hardware-keypad-configuration" class="md-nav__link">(Optional) Hardware keypad configuration</a>
       
     
     </li></ul>
@@ -285,6 +292,17 @@
             
   <section id="usage">
 <h1 id="usage--page-root">Usage<a class="headerlink" href="#usage--page-root" title="Link to this heading">¶</a></h1>
+<p>The Popstar workflow consists of the following steps:</p>
+<ol class="arabic simple">
+<li><p>Initialize a new project by running the Shortcut <em>Initialize Popstar for new project</em>.</p></li>
+<li><p>Start a new destination box by running the Shortcut  <em>Start new destination box</em>.</p></li>
+<li><p>Start a new destination folder by running the Shortcut  <em>Start new destination folder</em>.</p></li>
+<li><p>Take photos of documents to file into the current destination folder by running the Shortcut  <em>Take photo of document page</em>.</p></li>
+<li><p>Go back to step 3 when it’s time to start a new destination folder.</p></li>
+<li><p>Go back to step 2 when it’s time to start a new destination box.</p></li>
+<li><p>Go back to step 1 when it’s time to start a new scanning project.</p></li>
+</ol>
+<p>Steps 2 and 3 each use the camera on the phone to take a picture of box or folder labels rather than document pages; the software uses optical character recognition (OCR) to transcribe any text it finds in the image and then uses the extracted text to create a folder hierarchy for the destination box and folder within the box. Step 4 step currently does <em>not</em> apply OCR to document pages, because we decided it would be better to leave that to a post-processing workflow. Instead, the third step only saves images of document pages.</p>
 </section>
 
 
