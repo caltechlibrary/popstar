@@ -22,7 +22,8 @@
       "source",
       "span",
       "summary",
-      "sup"
+      "sup",
+      "u",
     ]
   },
   "line-length": {
