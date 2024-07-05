@@ -12,7 +12,7 @@ Depending on your needs and preferences, the Popstar software can be installed d
 
 ### Prerequisite software
 
-<img class="shadowed" align="right" src="_static/media/toolbox-pro-icon.png" width="3em"> The Popstar Shortcuts rely on a free third-party application, [Toolbox Pro](https://toolboxpro.app), that must be installed separately. It can be found in the Apple App Store by searching for "Toolbox Pro". The app icon is a white hammer on a blue-green background; the version number at the time of this writing is 2024.4.
+<img class="shadowed" align="right" alt="Icon for Toolbox Pro" src="_static/media/toolbox-pro-icon.png" width="3em"> The Popstar Shortcuts rely on a free third-party application, [Toolbox Pro](https://toolboxpro.app), that must be installed separately. It can be found in the Apple App Store by searching for "Toolbox Pro". The app icon is a white hammer on a blue-green background; the version number at the time of this writing is 2024.4.
 
 
 ### Approach #1: using iCloud Links
@@ -39,7 +39,7 @@ Once the Popstar Shortcuts are installed on an iPhone, the following configurati
 A paid iCloud Drive subscription may not necessary, depending on how much scanning needs to be performed, but Popstar currently creates all its files in the user's iCloud space, so a free iCloud Drive account must at least be enabled on the phone. To check, open the _Files_ app on the iPhone and check that iCloud Drive is enabled, and that you can open the iCloud Drive folder and create subfolders within it.
 
 <figure>
-<img class='shadowed iphone-screenshot' width='220em' src="_static/media/files-icloud.png">
+<img class='shadowed iphone-screenshot' width='220em' alt="Files app on iOS" src="_static/media/files-icloud.png">
     <figcaption>Open the iOS <em>Files</em> app on the phone, check that iCloud Drive is available, and also tap on iCloud Drive and make sure you can add content inside it.</figcaption>
 </figure>
 
@@ -54,27 +54,27 @@ When the Shortcuts are first run, the iOS security mechanisms display alert dial
 At the beginning of a new scanning project, run the Shortcut titled _Initialize Popstar for new project_. It will ask a few questions and provide some instructions for steps you need to perform. The following screenshots illustrate what happens.
 
 <figure>
-<img class='shadowed iphone-screenshot' width='220em' src="_static/media/initialization-1-project-name.png">
+<img class='shadowed iphone-screenshot' width='220em' alt="Screenshot of Shortcut executing on iPhone" src="_static/media/initialization-1-project-name.png">
 <figcaption>When the Shortcut <em>Initialize Popstar for new project</em> is run, it begins by asking for a name for the scanning project. This name is used to create a folder in the account holder's iCloud Drive.</figcaption>
 </figure>
 
 <figure>
-<img class='shadowed iphone-screenshot' width='220em' src="_static/media/initialization-2-open-camera.png">
+<img class='shadowed iphone-screenshot' width='220em' alt="Screenshot of Shortcut executing on iPhone"  src="_static/media/initialization-2-open-camera.png">
 <figcaption>Next, it will open the iOS Camera app and ask you to take a picture.</figcaption>
 </figure>
 
 <figure>
-<img class='shadowed iphone-screenshot' width='220em' src="_static/media/initialization-3-camera-app.png">
+<img class='shadowed iphone-screenshot' width='220em' alt="Screenshot of Shortcut executing on iPhone"  src="_static/media/initialization-3-camera-app.png">
 <figcaption>This step is only done so that you can adjust the camera and make sure it is properly focused. (This is especially important when the phone is mounted above a work surface). The picture that you take must be saved by tapping on "Use Photo", so that you can exit the Camera app, but the picture is not actually used or saved by Popstar.</figcaption>
 </figure>
 
 <figure>
-<img class='shadowed iphone-screenshot' width='220em' src="_static/media/initialization-4-final-dialog.png">
+<img class='shadowed iphone-screenshot' width='220em' alt="Screenshot of Shortcut executing on iPhone"  src="_static/media/initialization-4-final-dialog.png">
 <figcaption>Once the initialization workflow completes, it finishes by starting the standard iOS Files app.</figcaption>
 </figure>
 
 <figure>
-<img class='shadowed iphone-screenshot' width='220em' src="_static/media/initialization-5-files-app.png">
+<img class='shadowed iphone-screenshot' width='220em' alt="Screenshot of Shortcut executing on iPhone"  src="_static/media/initialization-5-files-app.png">
 <figcaption>When the Files app open, you can check that the project folder has been created properly in iCloud Drive.</figcaption>
 </figure>
 
@@ -93,13 +93,13 @@ One approach to setting up hardware buttons for triggering workflows is to use a
 Our current device is a [HUION Keydial Mini Bluetooth Programmable Keypad](https://web.archive.org/web/20240426133138/https://store.huion.com/products/huion-keydial-mini) bought in early April 2024 for approximately US $60.
 
 <figure>
-<img class="shadowed" align="middle" src="_static/media/huion-keypad.jpeg" width="300em">
+<img class="shadowed" align="middle" alt="Photo of HUION keypad"  src="_static/media/huion-keypad.jpeg" width="300em">
     <figcaption>Our HUION Keydial Mini Bluetooth Programmable Keypad, with custom labels that we printed, skillfully cut, and stuck on the keys we use for the Popstar workflow.</figcaption>
 </figure>
 
 There are many similar devices available. The main requirements for a suitable device are the following:
 
-1. <img class="shadowed iphone-screenshot" align="right" src="_static/media/two-spaces-needed.jpeg" width="10em"> It can be connected to an iPhone _somehow_, whether wirelessly (e.g., via Bluetooth) or wired cable.
+1. <img class="shadowed iphone-screenshot" align="right" alt="Dialog shown when assigning a key to trigger a Shortcut." src="_static/media/two-spaces-needed.jpeg" width="10em"> It can be connected to an iPhone _somehow_, whether wirelessly (e.g., via Bluetooth) or wired cable.
 2. There are at least three buttons that can send individual keyboard events that the iPhone will interpret as different keys on a keyboard.
 3. At least one other button on the keyboard sends the equivalent of the _space_ character on a keyboard. The reason for this requirement is that when assigning keyboard keys to trigger Shortcuts, the iOS interface for assigning keys requires typing two spaces in a row. (See the screenshot at right →)
 
@@ -115,37 +115,37 @@ The following is the procedure we use to assign buttons to Shortcuts:
 1. On the phone, go to the iOS _Settings_ app.
 2. Tap on _Accessibility_.
     <figure>
-    <img class='shadowed iphone-screenshot' width='220em' src="_static/media/iphone-settings-accessibility-light.png">
+    <img class='shadowed iphone-screenshot' width='220em' alt="Screenshot" src="_static/media/iphone-settings-accessibility-light.png">
     <figcaption>Select the <em>Accessibility</em> item in the iOS Settings app.</figcaption>
     </figure>
 3. In the _Accessibility_ panel, scroll down the list to the section titled “physical and motor” and tap on _Keyboards_.
     <figure>
-    <img class='shadowed iphone-screenshot' width='220em' src="_static/media/iphone-settings-physical-light.png">
+    <img class='shadowed iphone-screenshot' width='220em' alt="Screenshot" src="_static/media/iphone-settings-physical-light.png">
     <figcaption>Select the <em>Keyboards</em> item in the <em>Accessibility</em> panel.</figcaption>
     </figure>
 4. Tap on _Full Keyboard Access_, located at the top of the _Keyboards_panel.
     <figure>
-    <img class='shadowed iphone-screenshot' width='220em' src="_static/media/iphone-settings-keyboards-light.png">
+    <img class='shadowed iphone-screenshot' width='220em' alt="Screenshot" src="_static/media/iphone-settings-keyboards-light.png">
     <figcaption>Select the <em>Full Keyboard Access</em> item in the <em>Accessibility</em> panel.</figcaption>
     </figure>
 5. Turn on _Full Keyboard Access_ via the toggle.
     <figure>
-    <img class='shadowed iphone-screenshot' width='220em' src="_static/media/iphone-settings-keyboard-toggle-light.png">
+    <img class='shadowed iphone-screenshot' width='220em' alt="Screenshot" src="_static/media/iphone-settings-keyboard-toggle-light.png">
     <figcaption>Switch on the <em>Full Keyboard Access</em> toggle in the <em>Full Keyboard Access</em> panel.</figcaption>
     </figure>
 6. Tap on _Commands_ in the middle of the same screen.
     <figure>
-    <img class='shadowed iphone-screenshot' width='220em' src="_static/media/iphone-settings-keyboard-commands-light.png">
+    <img class='shadowed iphone-screenshot' width='220em' alt="Screenshot" src="_static/media/iphone-settings-keyboard-commands-light.png">
     <figcaption>Select the <em>Commands</em> item in the <em>Full Keyboard Access</em> panel.</figcaption>
     </figure>
 7. Scroll the (long) list of items until you find the section titled “Shortcuts”.
     <figure>
-    <img class='shadowed iphone-screenshot' width='220em' src="_static/media/iphone-keyboard-shortcuts-section-light.png">
+    <img class='shadowed iphone-screenshot' width='220em' alt="Screenshot" src="_static/media/iphone-keyboard-shortcuts-section-light.png">
     <figcaption>Scroll down to the section for <em>Shortcuts</em> in the <em>Commands</em> panel.</figcaption>
     </figure>
 8. Scroll the list of Shortcuts and look for the 3 main Popstar workflow shortcut names: "Start new destination box", "Start new destination folder", and "Take photo of document page".
     <figure>
-    <img class='shadowed iphone-screenshot' width='220em' src="_static/media/popstar-shortcuts-in-commands-list-light.png">
+    <img class='shadowed iphone-screenshot' width='220em' alt="Screenshot" src="_static/media/popstar-shortcuts-in-commands-list-light.png">
     <figcaption>Scroll down to the section for <em>Shortcuts</em> in the <em>Commands</em> panel.</figcaption>
     </figure>
 9. Assign keys of your choosing to the 3 main shortcuts, one after the other. Follow this procedure:
