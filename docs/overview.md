@@ -7,21 +7,21 @@ One of the essential tasks for staff at the Caltech Library Archives is to selec
 The Caltech Archives recently accessioned materials from [Robert H. Grubbs](https://en.wikipedia.org/wiki/Robert_H._Grubbs). Grubbs was a Caltech faculty member and Nobel Prize winner in Chemistry. The hybrid collection consists of over 100 carton-sized boxes of papers and thousands of digital files and emails.
 
 <figure>
-<img class="shadow" align="middle" src="_static/media/bankers-boxes.jpeg" width="400em">
+<img class="shadow" align="middle" alt="Photo of a room filled with banker's boxes" src="_static/media/bankers-boxes.jpeg" width="400em">
     <figcaption>A small portion of the Robert H. Grubbs collection.</figcaption>
 </figure>
 
 We cannot keep all of the materials, so Caltech Archives personnel evaluate the materials to determine which ones should be kept and digitized. The physical materials that are kept are placed in archival boxes such as the ones shown below.
 
 <figure>
-<img class="shadow" align="middle" src="_static/media/archival-boxes.jpeg" width="400em">
+<img class="shadow" align="middle" alt="Photo of some gray archival boxes" src="_static/media/archival-boxes.jpeg" width="400em">
     <figcaption>Archival boxes used to store selected materials from the collection.</figcaption>
 </figure>
 
 Inside the archival boxes, paper documents are organized using manila folders.
 
 <figure>
-<img class="shadow" align="middle" src="_static/media/folders-inside-boxes.jpeg" width="400em">
+<img class="shadow" align="middle" alt="Photo of manila folders inside archival boxes" src="_static/media/folders-inside-boxes.jpeg" width="400em">
     <figcaption>Archival boxes used to store selected materials from the collection. In the Popstar workflow, an archival box is referred to as "destination box" and a folder within the box is referred to as a "destination folder".</figcaption>
 </figure>
 
@@ -31,14 +31,14 @@ Inside the archival boxes, paper documents are organized using manila folders.
 Our experiment in simple, rapid scanning used a height-adjustable table (for the comfort of staff doing the work) and a large ring light positioned above the table. The ring light has a phone mount in the middle where we place an Apple iPhone with the camera facing the table surface. On this iPhone, we install the Popstar software as described in the [Installation and configuration](installation.md) section of this document.
 
 <figure>
-<img class="shadow" align="middle" src="_static/media/table-and-light.jpeg" width="400em">
+<img class="shadow" align="middle" alt="Photo of our scanning setup" src="_static/media/table-and-light.jpeg" width="400em">
     <figcaption>Our extremely basic scanning setup.</figcaption>
 </figure>
 
 We placed a gray felt pad on top of the table surface; this serves as a mat for placing document pages. The felt pad makes the surface less slippery for the papers, and also provides a more-or-less neutral background surrounding document pages so that borders may be more easily detected by later image processing steps. We also placed an "L" shape in one corner of the gray felt mat using Velcro-backed cloth to provide a placement guide for document pages.
 
 <figure>
-<img class="shadow" align="middle" src="_static/media/example-document-scan.jpeg" width="400em">
+<img class="shadow" align="middle" alt="Photo of document on gray felt sheet" src="_static/media/example-document-scan.jpeg" width="400em">
     <figcaption>Example of an actual document image taken by our workflow software. Document pages are placed on a gray mat that is itself placed on the table shown in the previous photo.</figcaption>
 </figure>
 
