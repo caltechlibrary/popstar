@@ -1,6 +1,28 @@
 #!/usr/bin/env osascript -s o                            # -*- mode: apples -*-
 # Summary: get the iCloud link for a Shortcut.
 #
+# As of MacOS 13.6, the link for a Shortcut can only be obtained manually,
+# using the "Share" command in the Shortcuts application. (For a system
+# designed to enable automation, the Shortcuts application itself has
+# astonishingly little API or automation support.) The manual process is
+# tedious and error-prone when trying to distribute many different Shortcuts.
+#
+# We developed get-shortcut-link so that we could automate getting iCloud
+# links as part of a software release workflow. This program is written in
+# AppleScript and uses GUI automation techniques to interact with the
+# Shortcuts app. GUI automation is far from ideal, but no other alternative
+# seems to present itself in the face of the limitations present in Apple's
+# Shortcuts application.
+#
+# Usage:
+#    get-shortcut-link "name of shortcut"
+#    get-shortcut-link --help
+#
+# This program expects a single argument, the name of a Shortcut, and returns
+# an iCloud sharing link for that Shortcut. The named Shortcut must be defined
+# among the Shortcuts available to the user account running this program, or
+# an error will result.
+#
 # Copyright 2024 California Institute of Technology.
 # License: Modified BSD 3-clause – see file "LICENSE" in the project website.
 # Website: https://github.com/caltechlibrary/popstar
