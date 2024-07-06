@@ -2,6 +2,13 @@
 
 Popstar (_**P**h**o**ne-based **p**rocessing **s**of**t**ware for **ar**chives_) is an Apple Shortcuts-based workflow for digitizing and processing documents in library archives.
 
+[![License](https://img.shields.io/badge/License-BSD--like-lightgrey.svg?style=flat-square)](https://github.com/caltechlibrary/popstar/blob/develop/LICENSE)
+[![Latest release](https://img.shields.io/github/v/release/caltechlibrary/popstar.svg?style=flat-square&color=b04e68&label=Latest%20release)](https://github.com/caltechlibrary/popstar/releases) 
+[![DOI](https://img.shields.io/badge/dynamic/json.svg?label=DOI&style=flat-square&colorA=gray&colorB=2c50a2&query=$.pids.doi.identifier&uri=https://data.caltech.edu/api/records/qkm6q-09336/versions/latest)](https://data.caltech.edu/records/qkm6q-09336/latest)
+[![iOS](https://img.shields.io/badge/iOS-000000?style=flat-square&logoColor=white)](https://www.apple.com/ios/)
+[![AppleScript](https://img.shields.io/badge/AppleScript-FFCA28.svg?style=flat-square)](https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/introduction/ASLR_intro.html)
+
+
 ## Table of contents
 
 * [Introduction](#introduction)
