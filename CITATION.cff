@@ -9,9 +9,9 @@ authors:
     orcid: https://orcid.org/0000-0001-5644-440X
 title: Popstar
 abstract: PhOne-based Processing SofTware for ARchives
-version: 0.0.0
-date-released: 2024-03-26
-url: https://github.com/caltechlibrary/popstar
+version: 0.0.3
+date-released: 2024-07-05
+url: https://caltechlibrary.github.io/popstar
 repository-code: https://github.com/caltechlibrary/popstar
 license-url: https://github.com/caltechlibrary/popstar/blob/main/LICENSE
 type: software

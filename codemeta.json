@@ -4,8 +4,8 @@
   "name": "Popstar",
   "identifier": "popstar",
   "description": "PhOne-based Processing SofTware for ARchives",
-  "version": "0.0.0",
-  "datePublished": "2024-03-26",
+  "version": "0.0.3",
+  "datePublished": "2024-07-05",
   "dateCreated": "2024-03-26",
   "author": [
     {
@@ -59,16 +59,24 @@
   "copyrightYear": 2024,
   "license": "https://github.com/caltechlibrary/popstar/blob/main/LICENSE",
   "isAccessibleForFree": true,
-  "url": "https://github.com/caltechlibrary/popstar",
+  "url": "https://caltechlibrary.github.io/popstar",
   "codeRepository": "https://github.com/caltechlibrary/popstar",
   "readme": "https://github.com/caltechlibrary/popstar/blob/main/README.md",
   "releaseNotes": "https://github.com/caltechlibrary/popstar/blob/main/CHANGES.md",
   "issueTracker": "https://github.com/caltechlibrary/popstar/issues",
   "downloadUrl": "https://github.com/caltechlibrary/popstar/archive/main.zip",
-  "relatedLink": "",
+  "softwareHelp": "https://caltechlibrary.github.io/popstar",
+  "relatedLink": null,
   "keywords": [
     "software",
-    "library"
+    "library",
+    "workflow",
+    "archiving",
+    "document scanning",
+    "automation",
+    "Apple Shortcuts",
+    "iOS",
+    "AppleScript"
   ],
   "developmentStatus": "active"
 }
