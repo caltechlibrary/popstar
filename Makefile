@@ -255,10 +255,10 @@ update-codemeta-link: vars
 	    git commit -m"chore: update relatedLink in codemeta.json" codemeta.json
 	fi
 
-push-updates:
-ifdef latest_doi
-	git push -v --all
-endif
+push-updates: vars
+	@if [ -n "$(latest_doi)" ]; then
+	  git push -v --all
+	fi
 
 
 # Cleanup ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
