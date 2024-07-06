@@ -4,11 +4,11 @@ This directory contains scripts that are used for Popstar development and produc
 
 ## `get-shortcut-link`
 
-The simplest way to distribute and install Shortcuts is via Apple's iCloud servers. Users then only need to click on a link to install a Shortcut on their device. Unfortunately, the link for a Shortcut can only be obtained manually, by using the "Share" command in the Shortcuts app (either on MacOS or iOS). 
+The simplest way to distribute and install Shortcuts is via Apple's iCloud servers. Users then only need to click on a link to install a Shortcut on their device. Unfortunately, the link for a Shortcut can only be obtained manually, by using the "Share" command in the Shortcuts app (either on MacOS or iOS).
 
 <div align="center">
 <figure>
-<img width='75%' src=".graphics/macos-shortcuts-app-icloud-link.png"><br>
+<img width='75%' alt="Screenshot of the menu item for getting an iCloud link in the MacOS Shortcuts application." src=".graphics/macos-shortcuts-app-icloud-link.png"><br>
 <figcaption>The "Copy iCloud Link" item in the MacOS Shortcuts app.</figcaption>
 </figure>
 </div><br>
