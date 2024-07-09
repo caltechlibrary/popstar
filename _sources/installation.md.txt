@@ -26,7 +26,7 @@ Shortcuts can be saved as files, and the resulting files can be imported into th
 
 If you wish to proceed anyway, you can do it in one of two ways:
 
-1. Visit <https://github.com/caltechlibrary/popstar/src> in a web browser, look for the files whose names end in `.shortcut`, and click on each file name in turn to install the Shortcuts.
+1. Visit <https://github.com/caltechlibrary/popstar/tree/main/src> in a web browser, look for the files whose names end in `.shortcut`, and click on each file name in turn to install the Shortcuts.
 2. Clone Popstar's GitHub repository to your local Mac computer, then visit the `src` subdirectory in the MacOS Finder, and double-click on each `.shortcut` file to make the Shortcuts app import them.
 
 
